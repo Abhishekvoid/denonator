@@ -79,7 +79,7 @@ export default function StandingSecretInventory() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-10">
+    <div className="w-full max-w-310 mx-auto space-y-10">
       {/* Section copy */}
       <div className="max-w-2xl space-y-4">
         <span className="inline-block rounded-full px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] font-bold font-mono bg-[#c03a2b]/10 dark:bg-amber/10 text-[#c03a2b] dark:text-amber border border-[#c03a2b]/20 dark:border-amber/20 select-none">

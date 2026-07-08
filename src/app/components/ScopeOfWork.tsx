@@ -96,7 +96,7 @@ export default function ScopeOfWork() {
   const [expandedRow, setExpandedRow] = useState<string | null>("GitHub");
 
   return (
-    <div className="border-b border-dashed border-ink-border bg-panel transition-colors duration-300">
+    <div className="border-b border-dashed border-ink-border bg-panel/70 transition-colors duration-300">
       {/* IDE Panel Header */}
       <div className="flex items-center justify-between px-6 py-2.5 bg-paper/80 border-b border-ink-border text-[10px] font-mono text-ink-muted dark:text-[#928b7d] select-none uppercase tracking-wider">
         <div className="flex items-center gap-1.5 font-bold">
@@ -108,8 +108,8 @@ export default function ScopeOfWork() {
         </div>
       </div>
 
-      <div className="p-6 md:p-12">
-        <div className="w-full max-w-6xl mx-auto space-y-8">
+      <div className="px-6 py-6 md:py-12">
+        <div className="w-full max-w-310 mx-auto space-y-8">
           <div className="max-w-2xl space-y-4">
             <span className="inline-block rounded-full px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] font-bold font-mono bg-[#c03a2b]/10 dark:bg-amber/10 text-[#c03a2b] dark:text-amber border border-[#c03a2b]/20 dark:border-amber/20 select-none">
               SEC. 4 — SCOPE OF WORK

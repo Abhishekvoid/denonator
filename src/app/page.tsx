@@ -6,12 +6,13 @@ import {
   AnimatePresence,
   useMotionValue,
   useSpring,
+  useReducedMotion,
 } from "framer-motion";
 import { ArrowRight, Play, Fingerprint } from "lucide-react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ExhibitATerminal from "./components/ExhibitATerminal";
+import RuntimeLoop from "./components/RuntimeLoop";
 import RuntimePulse from "./components/RuntimePulse";
 import EphemeralLifecycle from "./components/EphemeralLifecycle";
 import StandingSecretInventory from "./components/StandingSecretInventory";
@@ -19,6 +20,7 @@ import ScopeOfWork from "./components/ScopeOfWork";
 import Position from "./components/Position";
 import Appendix from "./components/Appendix";
 import InteractiveGrid from "./components/InteractiveGrid";
+import { Particles } from "@/components/ui/particles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -193,6 +195,9 @@ export default function Home() {
   const [ticketNumber, setTicketNumber] = useState("");
   const [demoOpen, setDemoOpen] = useState(false);
   const theme = useTheme();
+  const reduceMotion = useReducedMotion();
+  // Particle field behind sec1-6, in the accent red from the text.
+  const particleColor = "#c03a2b";
 
   const waitlistRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
@@ -335,6 +340,23 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-ink transition-colors duration-300">
       {/* Digital Noise / Paper grain texture */}
       <div className="digital-noise" />
+
+      {/* Fixed accent-red particle field at the back of the page. Opaque sections
+          cover it; the transparent even sections (2 / 4 / 6) reveal it as they
+          scroll over it. Viewport-sized, so the canvas stays cheap. */}
+      {!reduceMotion && (
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <Particles
+            className="h-full w-full"
+            quantity={160}
+            ease={70}
+            staticity={40}
+            size={1}
+            color={particleColor}
+            refresh
+          />
+        </div>
+      )}
 
       {/* Header, Nav & SEC. 0 — Hero Section (Abstract) - 100% Viewport Width */}
       <div className="w-full relative z-10 transition-colors duration-300">
@@ -584,7 +606,7 @@ export default function Home() {
                       <span className="font-mono text-[9px] text-ink-muted dark:text-[#928b7d] mb-2 tracking-widest uppercase block text-left">
                         EXHIBIT A — RUNTIME CAPTURE
                       </span>
-                      <ExhibitATerminal />
+                      <RuntimeLoop />
                       <span className="font-mono text-[10px] text-ink-muted dark:text-[#928b7d] mt-2.5 text-center block">
                         Fig. 1 — Revoking a permanent credential. Workload
                         transitions to ephemeral runtime authorization.
@@ -705,7 +727,7 @@ export default function Home() {
 
       {/* Subsequent sections - enclosed in the 1360px boxed container */}
       <div className="max-w-340 mx-auto px-6 md:px-8 py-10 md:py-16 relative z-10">
-        <div className="border border-ink-border bg-paper shadow-xl transition-colors duration-300">
+        <div className="border border-ink-border shadow-xl transition-colors duration-300">
           {/* SEC. 01 — THE PROBLEM */}
           <div
             className="border-b border-dashed border-ink-border bg-paper transition-colors duration-300 relative overflow-hidden"
@@ -722,13 +744,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="p-6 md:p-12">
+            <div className="px-6 py-6 md:py-12">
               <StandingSecretInventory />
             </div>
         </div>
 
           {/* SEC. 02 — THE RUNTIME PULSE DIAGRAM */}
-          <div className="border-b border-dashed border-ink-border bg-panel transition-colors duration-300">
+          <div className="border-b border-dashed border-ink-border bg-panel/70 transition-colors duration-300">
             {/* IDE Panel Header */}
             <div className="flex items-center justify-between px-6 py-2.5 bg-paper/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider">
               <div className="flex items-center gap-1.5 font-bold">
@@ -740,8 +762,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="p-6 md:p-12">
-              <div className="w-full max-w-6xl mx-auto">
+            <div className="px-6 py-6 md:py-12">
+              <div className="w-full max-w-310 mx-auto">
                 <RuntimePulse />
               </div>
             </div>
@@ -763,8 +785,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="p-6 md:p-12">
-              <div className="w-full max-w-6xl mx-auto">
+            <div className="px-6 py-6 md:py-12">
+              <div className="w-full max-w-310 mx-auto">
                 <EphemeralLifecycle />
               </div>
             </div>
@@ -778,7 +800,7 @@ export default function Home() {
 
             {/* SEC. 06 — THE REGISTER + APPENDIX */}
             <div
-              className="bg-panel transition-colors duration-300"
+              className="bg-panel/70 transition-colors duration-300"
               ref={waitlistRef}
               id="vision"
             >
@@ -793,8 +815,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="p-6 md:p-12">
-                <div className="w-full max-w-6xl mx-auto">
+              <div className="px-6 py-6 md:py-12">
+                <div className="w-full max-w-310 mx-auto">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start py-8">
                     {/* Left Column: Waitlist Title & Form */}
                     <div className="lg:col-span-5 space-y-8 text-left">

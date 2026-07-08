@@ -20,8 +20,8 @@ export default function Position() {
         </div>
       </div>
 
-      <div className="p-6 md:p-12">
-        <div className="w-full max-w-6xl mx-auto space-y-10">
+      <div className="px-6 py-6 md:py-12">
+        <div className="w-full max-w-310 mx-auto space-y-10">
           <div className="space-y-5">
             <span className="inline-block rounded-full px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] font-bold font-mono bg-[#c03a2b]/10 dark:bg-amber/10 text-[#c03a2b] dark:text-amber border border-[#c03a2b]/20 dark:border-amber/20 select-none">
               SEC. 5 — POSITION
