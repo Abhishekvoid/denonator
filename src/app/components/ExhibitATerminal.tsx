@@ -64,9 +64,9 @@ export default function ExhibitATerminal() {
   };
 
   return (
-    <div className="relative bg-[#0d0f13] text-[#e6e8eb] p-5 font-mono text-xs md:text-sm border border-[#d4d0c5] dark:border-[#1b1e25] shadow-xl overflow-hidden max-w-full">
+    <div className="relative bg-[#211e1a] text-[#ece7dd] p-5 font-mono text-xs md:text-sm border border-[#d4d0c5] dark:border-[#38332b] shadow-xl overflow-hidden max-w-full">
       {/* Terminal Title Bar (IDE styling) */}
-      <div className="flex justify-between items-center border-b border-[#1b1e25] pb-3 mb-4 select-none relative z-10">
+      <div className="flex justify-between items-center border-b border-[#38332b] pb-3 mb-4 select-none relative z-10">
         <div className="flex items-center gap-2">
           {/* Window control dots */}
           <div className="flex items-center gap-1.5 mr-2">
@@ -74,7 +74,7 @@ export default function ExhibitATerminal() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#ffb000] inline-block opacity-85" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] inline-block opacity-85" />
           </div>
-          <span className="text-[#737b8c] font-medium text-[10px] tracking-wider uppercase">terminal_session.sh</span>
+          <span className="text-[#928b7d] font-medium text-[10px] tracking-wider uppercase">terminal_session.sh</span>
         </div>
         <div className="flex items-center gap-2">
           {state === "static" && (
@@ -94,9 +94,9 @@ export default function ExhibitATerminal() {
       <div className="space-y-4 relative z-10">
         {/* Step 1: Check Env */}
         <div>
-          <p className="text-[#737b8c] font-normal">$ cat .env</p>
+          <p className="text-[#928b7d] font-normal">$ cat .env</p>
           <div className="flex items-center gap-3 mt-1 h-6 flex-wrap">
-            <span className={`transition-all duration-300 font-medium ${state !== "static" ? "text-[#737b8c]/40 line-through" : "text-[#e6e8eb]"}`}>
+            <span className={`transition-all duration-300 font-medium ${state !== "static" ? "text-[#928b7d]/40 line-through" : "text-[#ece7dd]"}`}>
               GITHUB_PAT={patText}
             </span>
             <AnimatePresence>
@@ -116,9 +116,9 @@ export default function ExhibitATerminal() {
 
         {/* Step 2: Revocation trigger */}
         <div>
-          <p className="text-[#737b8c]">$ python agent.py</p>
-          <p className="text-[#e6e8eb] mt-1"><span className="text-[#ffb000]">from</span> broker <span className="text-[#ffb000]">import</span> GitHub</p>
-          <p className="text-[#e6e8eb]">gh = GitHub()</p>
+          <p className="text-[#928b7d]">$ python agent.py</p>
+          <p className="text-[#ece7dd] mt-1"><span className="text-[#ffb000]">from</span> broker <span className="text-[#ffb000]">import</span> GitHub</p>
+          <p className="text-[#ece7dd]">gh = GitHub()</p>
         </div>
 
         {/* Step 3: ephemeral credential issuance & logs */}
@@ -128,13 +128,13 @@ export default function ExhibitATerminal() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="space-y-2 pt-3 border-t border-[#1b1e25]"
+              className="space-y-2 pt-3 border-t border-[#38332b]"
             >
               <div className="flex items-center gap-2 text-[#10b981]">
                 <span className="text-[12px] font-bold">✓</span>
                 <span>Broker intercepted: Dynamic delegation initialized</span>
               </div>
-              <div className="flex items-center gap-2 text-[#e6e8eb] pl-6 flex-wrap">
+              <div className="flex items-center gap-2 text-[#ece7dd] pl-6 flex-wrap">
                 <span>Scope: <span className="text-[#8f95a3]">repo:read</span></span>
                 <span>·</span>
                 <span className="flex items-center gap-1.5">
@@ -144,7 +144,7 @@ export default function ExhibitATerminal() {
                   </span>
                 </span>
               </div>
-              <div className="text-[#737b8c] pl-6">
+              <div className="text-[#928b7d] pl-6">
                 Audit Log: <span className="text-[#8f95a3]">BRK_TX_98f4a · ENCRYPTED</span>
               </div>
             </motion.div>
@@ -153,8 +153,8 @@ export default function ExhibitATerminal() {
       </div>
 
       {/* Terminal Interactive Controls */}
-      <div className="mt-6 pt-4 border-t border-[#1b1e25] flex items-center justify-between flex-wrap gap-3 relative z-10">
-        <span className="text-[9px] text-[#737b8c] uppercase tracking-widest">
+      <div className="mt-6 pt-4 border-t border-[#38332b] flex items-center justify-between flex-wrap gap-3 relative z-10">
+        <span className="text-[9px] text-[#928b7d] uppercase tracking-widest">
           {state === "static" ? "Click button to trigger spec revocation" : "Revocation simulator running"}
         </span>
         <div className="flex items-center gap-2">
@@ -169,7 +169,7 @@ export default function ExhibitATerminal() {
           ) : (
             <button
               onClick={handleReset}
-              className="bg-[#1b1e25] hover:bg-[#2d313d] text-[#e6e8eb] border border-[#2d313d] px-4 py-2 font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 text-xs active:translate-y-[1px] cursor-pointer"
+              className="bg-[#38332b] hover:bg-[#2d313d] text-[#ece7dd] border border-[#2d313d] px-4 py-2 font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 text-xs active:translate-y-[1px] cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               Reset demo

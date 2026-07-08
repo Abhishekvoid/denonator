@@ -10,9 +10,9 @@
 }
 
 html.dark {
-  --background: #08090c;
-  --foreground: #e6e8eb;
-  --stroke-wire: #1b1e25;
+  --background: #1a1815;
+  --foreground: #ece7dd;
+  --stroke-wire: #38332b;
 }
 
 @theme inline {

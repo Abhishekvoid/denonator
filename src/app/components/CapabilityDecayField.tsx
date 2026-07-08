@@ -139,7 +139,7 @@ function DecayPoints({ positions, thresholds, erosion, danger, hoverX, hoverY, h
     mat.uniforms.uHover.value.set(hoverX.get(), hoverY.get());
     mat.uniforms.uHoverActive.value = hoverActive.get();
     const isDark = typeof document !== "undefined" && document.documentElement.classList.contains("dark");
-    mat.uniforms.uInkColor.value.set(isDark ? "#e6e8eb" : "#17150f");
+    mat.uniforms.uInkColor.value.set(isDark ? "#ece7dd" : "#17150f");
   });
 
   return (

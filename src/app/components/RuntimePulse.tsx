@@ -190,7 +190,7 @@ export default function RuntimePulse() {
           <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-[#ffb000] tracking-widest uppercase block">SEC. 2 — FLOW SCHEMA</span>
           
           {/* Staggered Word Reveal Heading */}
-          <h2 className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#e6e8eb] leading-tight flex flex-wrap gap-x-1.5 gap-y-0.5">
+          <h2 className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd] leading-tight flex flex-wrap gap-x-1.5 gap-y-0.5">
             {"Intercepting credentials dynamically".split(" ").map((word, idx) => (
               <span key={idx} className="inline-block overflow-hidden relative py-0.5">
                 <motion.span
@@ -210,13 +210,13 @@ export default function RuntimePulse() {
             ))}
           </h2>
 
-          <p className="text-sm text-[#5c574a] dark:text-[#737b8c] leading-relaxed">
+          <p className="text-sm text-[#5c574a] dark:text-[#928b7d] leading-relaxed">
             Instead of injecting raw tokens, the Agent asks the Broker. The Broker validates the policy, contacts the identity provider for a short-lived scoped key, and handles the call transparently.
           </p>
 
           {/* Interactive Legend Console */}
           <div className="space-y-3 pt-2">
-            <span className="font-mono text-[9px] text-[#5c574a] dark:text-[#737b8c] uppercase tracking-wider block">INTERACTIVE HUB (SELECT PATH TO RUN FLOW)</span>
+            <span className="font-mono text-[9px] text-[#5c574a] dark:text-[#928b7d] uppercase tracking-wider block">INTERACTIVE HUB (SELECT PATH TO RUN FLOW)</span>
             
             <div className="space-y-2 font-mono text-xs">
               {/* Legend Item 1 */}
@@ -225,7 +225,7 @@ export default function RuntimePulse() {
                 className={`w-full p-3 border transition-all cursor-pointer rounded-none text-left flex flex-col gap-1.5 font-mono ${
                   activeType === "granted"
                     ? "border-[#10b981] bg-[#10b981]/5 text-[#10b981]"
-                    : "border-[#d4d0c5] dark:border-[#1b1e25] bg-paper dark:bg-[#08090c] text-[#5c574a] dark:text-[#737b8c] hover:bg-[#faf9f5] dark:hover:bg-[#0d0f13]"
+                    : "border-[#d4d0c5] dark:border-[#38332b] bg-paper dark:bg-[#1a1815] text-[#5c574a] dark:text-[#928b7d] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a]"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -247,7 +247,7 @@ export default function RuntimePulse() {
                 className={`w-full p-3 border transition-all cursor-pointer rounded-none text-left flex flex-col gap-1.5 font-mono ${
                   activeType === "temporary"
                     ? "border-[#ffb000] bg-[#ffb000]/5 text-[#ffb000]"
-                    : "border-[#d4d0c5] dark:border-[#1b1e25] bg-paper dark:bg-[#08090c] text-[#5c574a] dark:text-[#737b8c] hover:bg-[#faf9f5] dark:hover:bg-[#0d0f13]"
+                    : "border-[#d4d0c5] dark:border-[#38332b] bg-paper dark:bg-[#1a1815] text-[#5c574a] dark:text-[#928b7d] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a]"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function RuntimePulse() {
                 className={`w-full p-3 border transition-all cursor-pointer rounded-none text-left flex flex-col gap-1.5 font-mono ${
                   activeType === "denied"
                     ? "border-[#ef4444] bg-[#ef4444]/5 text-[#ef4444]"
-                    : "border-[#d4d0c5] dark:border-[#1b1e25] bg-paper dark:bg-[#08090c] text-[#5c574a] dark:text-[#737b8c] hover:bg-[#faf9f5] dark:hover:bg-[#0d0f13]"
+                    : "border-[#d4d0c5] dark:border-[#38332b] bg-paper dark:bg-[#1a1815] text-[#5c574a] dark:text-[#928b7d] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a]"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -290,10 +290,10 @@ export default function RuntimePulse() {
 
         {/* Visual Schematic Board (Now Right on Desktop, Top on Mobile) */}
         <div className="lg:col-span-8 lg:order-2 order-1">
-          <div className="border border-[#d4d0c5] dark:border-[#1b1e25] bg-[#faf9f5] dark:bg-[#0d0f13] p-4 md:p-6 font-mono text-xs md:text-sm relative overflow-hidden transition-colors duration-300">
+          <div className="border border-[#d4d0c5] dark:border-[#38332b] bg-[#faf9f5] dark:bg-[#211e1a] p-4 md:p-6 font-mono text-xs md:text-sm relative overflow-hidden transition-colors duration-300">
             {/* Schematic Header */}
-            <div className="flex justify-between items-center border-b border-[#d4d0c5] dark:border-[#1b1e25] pb-3 mb-6 select-none flex-wrap gap-2 relative z-10">
-              <span className="text-[#5c574a] dark:text-[#737b8c] text-[10px] tracking-widest uppercase">SEC. 02 — THE RUNTIME TRUST FLOW</span>
+            <div className="flex justify-between items-center border-b border-[#d4d0c5] dark:border-[#38332b] pb-3 mb-6 select-none flex-wrap gap-2 relative z-10">
+              <span className="text-[#5c574a] dark:text-[#928b7d] text-[10px] tracking-widest uppercase">SEC. 02 — THE RUNTIME TRUST FLOW</span>
               <div className="flex gap-2">
                 {(["granted", "temporary", "denied"] as PulseType[]).map((type) => (
                   <button
@@ -301,8 +301,8 @@ export default function RuntimePulse() {
                     onClick={() => triggerPulse(type)}
                     className={`px-2 py-1 text-[10px] uppercase font-bold border transition-all active:translate-y-[1px] cursor-pointer rounded-sm ${
                       activeType === type
-                        ? "bg-[#17150f] dark:bg-[#ffb000] text-[#f6f5f0] dark:text-[#08090c] border-[#17150f] dark:border-[#ffb000]"
-                        : "bg-[#f6f5f0] dark:bg-[#08090c] text-[#5c574a] dark:text-[#737b8c] border-[#d4d0c5] dark:border-[#1b1e25] hover:bg-[#17150f]/5 dark:hover:bg-[#e6e8eb]/5"
+                        ? "bg-[#17150f] dark:bg-[#ffb000] text-[#f6f5f0] dark:text-[#1a1815] border-[#17150f] dark:border-[#ffb000]"
+                        : "bg-[#f6f5f0] dark:bg-[#1a1815] text-[#5c574a] dark:text-[#928b7d] border-[#d4d0c5] dark:border-[#38332b] hover:bg-[#17150f]/5 dark:hover:bg-[#ece7dd]/5"
                     }`}
                   >
                     {type}
@@ -378,7 +378,7 @@ export default function RuntimePulse() {
               >
                 {/* 3D Back Box */}
                 <div 
-                  className="absolute inset-0 translate-x-[8px] -translate-y-[8px] border border-dashed border-[#d4d0c5] dark:border-[#1b1e25] bg-paper/30 dark:bg-[#08090c]/30 transition-all duration-300 pointer-events-none z-0" 
+                  className="absolute inset-0 translate-x-[8px] -translate-y-[8px] border border-dashed border-[#d4d0c5] dark:border-[#38332b] bg-paper/30 dark:bg-[#1a1815]/30 transition-all duration-300 pointer-events-none z-0" 
                   style={{
                     borderColor: agentActive ? COLOR_MAP[activeType] : undefined
                   }}
@@ -389,7 +389,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={agentActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -397,7 +397,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={agentActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -405,7 +405,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={agentActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -413,14 +413,14 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={agentActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
 
                 {/* Front Box */}
                 <div 
-                  className="relative z-10 flex flex-col bg-[#faf9f5]/90 dark:bg-[#0d0f13]/90 border border-[#d4d0c5] dark:border-[#1b1e25] w-full rounded-none overflow-hidden transition-all duration-300"
+                  className="relative z-10 flex flex-col bg-[#faf9f5]/90 dark:bg-[#211e1a]/90 border border-[#d4d0c5] dark:border-[#38332b] w-full rounded-none overflow-hidden transition-all duration-300"
                   style={{
                     filter: agentActive
                       ? (activeType === "denied"
@@ -432,7 +432,7 @@ export default function RuntimePulse() {
                   }}
                 >
                   {/* Mini Window Tab Bar */}
-                  <div className="flex items-center justify-between px-2 py-1 bg-[#f6f5f0] dark:bg-[#08090c] border-b border-[#d4d0c5] dark:border-[#1b1e25] text-[9px] text-[#5c574a] dark:text-[#737b8c] font-bold">
+                  <div className="flex items-center justify-between px-2 py-1 bg-[#f6f5f0] dark:bg-[#1a1815] border-b border-[#d4d0c5] dark:border-[#38332b] text-[9px] text-[#5c574a] dark:text-[#928b7d] font-bold">
                     <div className="flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] opacity-80" />
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffb000] opacity-80" />
@@ -445,8 +445,8 @@ export default function RuntimePulse() {
                   {/* Body Content */}
                   <div className="p-2 md:p-3 flex flex-col items-center justify-center gap-1 text-center">
                     <Terminal className="w-4 h-4 md:w-5 md:h-5 text-[#c03a2b] dark:text-[#ffb000] opacity-80" />
-                    <span className="text-[9px] md:text-[10px] text-[#5c574a] dark:text-[#737b8c] uppercase tracking-wider font-bold">CLIENT</span>
-                    <span className="text-[10px] md:text-xs font-bold text-[#17150f] dark:text-[#e6e8eb]">AI Agent</span>
+                    <span className="text-[9px] md:text-[10px] text-[#5c574a] dark:text-[#928b7d] uppercase tracking-wider font-bold">CLIENT</span>
+                    <span className="text-[10px] md:text-xs font-bold text-[#17150f] dark:text-[#ece7dd]">AI Agent</span>
                   </div>
                 </div>
               </motion.div>
@@ -508,7 +508,7 @@ export default function RuntimePulse() {
 
                 {/* Front Box */}
                 <div 
-                  className="relative z-10 flex flex-col bg-[#17150f] dark:bg-[#17150f] border border-[#17150f] dark:border-[#383a40] w-full rounded-none overflow-hidden transition-all duration-300"
+                  className="relative z-10 flex flex-col bg-[#17150f] dark:bg-[#17150f] border border-[#17150f] dark:border-[#423c32] w-full rounded-none overflow-hidden transition-all duration-300"
                   style={{
                     filter: brokerStatus !== "listening"
                       ? (activeType === "denied"
@@ -539,9 +539,9 @@ export default function RuntimePulse() {
                     <span className="text-[9px] md:text-[10px] text-[#faf9f5]/65 uppercase tracking-wider font-bold">GATEWAY</span>
                     
                     {/* Status Indicators inside Broker */}
-                    <div className="mt-1 text-[9px] md:text-[10px] font-mono select-none px-1.5 py-0.5 rounded-none border border-[#3e3a31] bg-[#0d0f13] w-full text-center text-[#e6e8eb]">
+                    <div className="mt-1 text-[9px] md:text-[10px] font-mono select-none px-1.5 py-0.5 rounded-none border border-[#3e3a31] bg-[#211e1a] w-full text-center text-[#ece7dd]">
                       {brokerStatus === "listening" && (
-                        <span className="text-[#737b8c]">LISTENING</span>
+                        <span className="text-[#928b7d]">LISTENING</span>
                       )}
                       {brokerStatus === "verifying" && (
                         <span className="text-[#ffb000] font-bold animate-pulse">VERIFYING</span>
@@ -571,7 +571,7 @@ export default function RuntimePulse() {
               >
                 {/* 3D Back Box */}
                 <div 
-                  className="absolute inset-0 translate-x-[8px] -translate-y-[8px] border border-dashed border-[#d4d0c5] dark:border-[#1b1e25] bg-paper/30 dark:bg-[#08090c]/30 transition-all duration-300 pointer-events-none z-0" 
+                  className="absolute inset-0 translate-x-[8px] -translate-y-[8px] border border-dashed border-[#d4d0c5] dark:border-[#38332b] bg-paper/30 dark:bg-[#1a1815]/30 transition-all duration-300 pointer-events-none z-0" 
                   style={{
                     borderColor: githubActive ? COLOR_MAP[activeType] : undefined
                   }}
@@ -582,7 +582,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={githubActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -590,7 +590,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={githubActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -598,7 +598,7 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={githubActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
@@ -606,14 +606,14 @@ export default function RuntimePulse() {
                   <line 
                     x1="0" y1="8" x2="8" y2="0" 
                     stroke={githubActive ? COLOR_MAP[activeType] : "currentColor"} 
-                    className="text-[#d4d0c5] dark:text-[#1b1e25] transition-colors duration-300" 
+                    className="text-[#d4d0c5] dark:text-[#38332b] transition-colors duration-300" 
                     strokeWidth="1" strokeDasharray="2 2" 
                   />
                 </svg>
 
                 {/* Front Box */}
                 <div 
-                  className="relative z-10 flex flex-col bg-[#faf9f5]/90 dark:bg-[#0d0f13]/90 border border-[#d4d0c5] dark:border-[#1b1e25] w-full rounded-none overflow-hidden transition-all duration-300"
+                  className="relative z-10 flex flex-col bg-[#faf9f5]/90 dark:bg-[#211e1a]/90 border border-[#d4d0c5] dark:border-[#38332b] w-full rounded-none overflow-hidden transition-all duration-300"
                   style={{
                     filter: githubActive
                       ? (activeType === "temporary"
@@ -623,7 +623,7 @@ export default function RuntimePulse() {
                   }}
                 >
                   {/* Mini Window Tab Bar */}
-                  <div className="flex items-center justify-between px-2 py-1 bg-[#f6f5f0] dark:bg-[#08090c] border-b border-[#d4d0c5] dark:border-[#1b1e25] text-[9px] text-[#5c574a] dark:text-[#737b8c] font-bold">
+                  <div className="flex items-center justify-between px-2 py-1 bg-[#f6f5f0] dark:bg-[#1a1815] border-b border-[#d4d0c5] dark:border-[#38332b] text-[9px] text-[#5c574a] dark:text-[#928b7d] font-bold">
                     <div className="flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] opacity-80" />
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffb000] opacity-80" />
@@ -636,15 +636,15 @@ export default function RuntimePulse() {
                   {/* Body Content */}
                   <div className="p-2 md:p-3 flex flex-col items-center justify-center gap-1 text-center">
                     <Fingerprint className="w-4 h-4 md:w-5 md:h-5 text-[#10b981] opacity-80" />
-                    <span className="text-[9px] md:text-[10px] text-[#5c574a] dark:text-[#737b8c] uppercase tracking-wider font-bold">ENDPOINT</span>
-                    <span className="text-[10px] md:text-xs font-bold text-[#17150f] dark:text-[#e6e8eb]">GitHub API</span>
+                    <span className="text-[9px] md:text-[10px] text-[#5c574a] dark:text-[#928b7d] uppercase tracking-wider font-bold">ENDPOINT</span>
+                    <span className="text-[10px] md:text-xs font-bold text-[#17150f] dark:text-[#ece7dd]">GitHub API</span>
                   </div>
                 </div>
               </motion.div>
             </div>
 
             {/* Narrative Legend */}
-            <div className="mt-4 border-t border-[#d4d0c5] dark:border-[#1b1e25] pt-3 text-[11px] text-[#5c574a] dark:text-[#737b8c] leading-relaxed relative z-10">
+            <div className="mt-4 border-t border-[#d4d0c5] dark:border-[#38332b] pt-3 text-[11px] text-[#5c574a] dark:text-[#928b7d] leading-relaxed relative z-10">
               {activeType === "granted" && (
                 <p>
                   <span className="font-bold text-[#10b981]">✔ Ephemeral Access:</span> Agent requests resources transparently. Broker intercepts the call, maps the identity, generates a scoped short-lived token, and releases it safely to the external API.
