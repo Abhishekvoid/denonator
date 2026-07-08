@@ -10,27 +10,11 @@ export default function ExhibitATerminal() {
   const [countdown, setCountdown] = useState(900); // 15:00
   const autoplayTimer = useRef<NodeJS.Timeout | null>(null);
 
-  // Autoplay trigger
-  useEffect(() => {
-    autoplayTimer.current = setTimeout(() => {
-      if (state === "static") {
-        handleRevoke();
-      }
-    }, 4500);
-
-    return () => {
-      if (autoplayTimer.current) clearTimeout(autoplayTimer.current);
-    };
-  }, [state]);
-
-  // Countdown timer for short-lived token
-  useEffect(() => {
-    if (state !== "active") return;
-    const interval = setInterval(() => {
-      setCountdown((prev) => (prev > 0 ? prev - 1 : 900));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [state]);
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
 
   const handleRevoke = async () => {
     if (state !== "static") return;
@@ -57,11 +41,27 @@ export default function ExhibitATerminal() {
     setCountdown(900);
   };
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
+  // Autoplay trigger
+  useEffect(() => {
+    autoplayTimer.current = setTimeout(() => {
+      if (state === "static") {
+        handleRevoke();
+      }
+    }, 4500);
+
+    return () => {
+      if (autoplayTimer.current) clearTimeout(autoplayTimer.current);
+    };
+  }, [state]);
+
+  // Countdown timer for short-lived token
+  useEffect(() => {
+    if (state !== "active") return;
+    const interval = setInterval(() => {
+      setCountdown((prev) => (prev > 0 ? prev - 1 : 900));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [state]);
 
   return (
     <div className="relative bg-[#211e1a] text-[#ece7dd] p-5 font-mono text-xs md:text-sm border border-[#d4d0c5] dark:border-[#38332b] shadow-xl overflow-hidden max-w-full">

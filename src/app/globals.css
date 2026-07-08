@@ -7,12 +7,38 @@
   --background: #f6f5f0;
   --foreground: #17150f;
   --stroke-wire: #d4d0c5;
+
+  --color-paper: #f6f5f0;
+  --color-panel: #faf9f5;
+  --color-ink: #17150f;
+  --color-ink-light: #2c2923;
+  --color-ink-muted: #5c574a;
+  --color-ink-border: #d4d0c5;
+  --color-ink-border-dark: #17150f;
+
+  /* Scrollbars */
+  --scrollbar-track: #f1ecd9;
+  --scrollbar-thumb: #c2ba9e;
+  --scrollbar-thumb-hover: #a39c82;
 }
 
 html.dark {
-  --background: #1a1815;
-  --foreground: #ece7dd;
-  --stroke-wire: #38332b;
+  --background: #0f1217;
+  --foreground: #f1f5f9;
+  --stroke-wire: #212836;
+
+  --color-paper: #141a24;
+  --color-panel: #0d1013;
+  --color-ink: #f1f5f9;
+  --color-ink-light: #cbd5e1;
+  --color-ink-muted: #8a99ad;
+  --color-ink-border: #212836;
+  --color-ink-border-dark: #0f1217;
+
+  /* Scrollbars */
+  --scrollbar-track: #0e1115;
+  --scrollbar-thumb: #212836;
+  --scrollbar-thumb-hover: #2d3748;
 }
 
 @theme inline {
@@ -20,12 +46,15 @@ html.dark {
   --font-serif: var(--font-serif), Georgia, serif;
   --font-mono: var(--font-mono), monospace;
   
-  --color-paper: #f6f5f0;
-  --color-ink: #17150f;
-  --color-ink-light: #2c2923;
-  --color-ink-muted: #5c574a;
-  --color-ink-border: #d4d0c5;
-  --color-ink-border-dark: #17150f;
+  --color-paper: var(--color-paper);
+  --color-panel: var(--color-panel);
+  --color-ink: var(--color-ink);
+  --color-ink-light: var(--color-ink-light);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-color-ink-muted: var(--color-ink-muted);
+  --color-ink-border: var(--color-ink-border);
+  --color-ink-border-dark: var(--color-ink-border-dark);
+  
   --color-crimson: #ef4444;
   --color-crimson-hover: #dc2626;
   
@@ -73,15 +102,15 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1ecd9;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #c2ba9e;
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
-  border: 1px solid #d4d0c5;
+  border: 1px solid var(--color-ink-border);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a39c82;
+  background: var(--scrollbar-thumb-hover);
 }
 
 @keyframes blink {

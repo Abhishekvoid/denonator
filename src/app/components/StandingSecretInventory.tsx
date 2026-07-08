@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface Finding {
@@ -18,6 +19,61 @@ const CREDENTIALS: Finding[] = [
   { name: "DB_PASSWORD", prefix: "", redact: "w-32 sm:w-44", age: "22 months" },
   { name: "SLACK_BOT_TOKEN", prefix: "xoxb-", redact: "w-28 sm:w-40", age: "5 months" },
 ];
+
+function ScrambleRedactor({ prefix, defaultWidth }: { prefix: string; defaultWidth: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [scrambledText, setScrambledText] = useState("");
+
+  useEffect(() => {
+    if (!isHovered) {
+      setScrambledText("");
+      return;
+    }
+
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+    const dummyLength = 16;
+    let iterations = 0;
+
+    const interval = setInterval(() => {
+      let result = "";
+      for (let i = 0; i < dummyLength; i++) {
+        if (i < iterations) {
+          result += "x89jKdf81s9d8s1j"[i] || "x";
+        } else {
+          result += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+      setScrambledText(result);
+      iterations += 0.5;
+
+      if (iterations >= dummyLength) {
+        clearInterval(interval);
+      }
+    }, 45);
+
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  return (
+    <span
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="inline-flex items-center cursor-help group/scramble py-0.5 select-none font-mono text-xs text-ink-muted dark:text-[#928b7d]"
+    >
+      {prefix}
+      {isHovered ? (
+        <span className="ml-1 text-[#ef4444] font-mono text-[11px] tracking-wider select-all font-semibold">
+          {scrambledText || "scanning..."}
+        </span>
+      ) : (
+        <span
+          className={`inline-block align-middle h-[0.9em] ${defaultWidth} ml-0.5 rounded-[1px] bg-[#17150f] dark:bg-[#5a5242] transition-all duration-300 group-hover/scramble:opacity-40`}
+          aria-label="redacted"
+        />
+      )}
+    </span>
+  );
+}
 
 export default function StandingSecretInventory() {
   const reduce = useReducedMotion();
@@ -40,8 +96,8 @@ export default function StandingSecretInventory() {
       </div>
 
       {/* The inventory: a paper audit document */}
-      <div className="rounded-xl border border-ink-border dark:border-[#38332b] bg-[#faf9f5] dark:bg-[#1f1c17] overflow-hidden shadow-[4px_4px_0px_#d4d0c5] dark:shadow-[4px_4px_0px_#38332b] transition-colors duration-300">
-        <div className="flex items-center justify-between px-5 py-3 border-b border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] font-mono text-[10px] uppercase tracking-wider select-none">
+      <div className="rounded-xl border border-ink-border bg-panel overflow-hidden shadow-[4px_4px_0px_#d4d0c5] dark:shadow-[4px_4px_0px_var(--color-ink-border)] transition-colors duration-300">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-ink-border bg-paper font-mono text-[10px] uppercase tracking-wider select-none">
           <span className="font-bold text-[#17150f] dark:text-[#ece7dd]">
             Inventory of standing credentials
           </span>
@@ -68,14 +124,8 @@ export default function StandingSecretInventory() {
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-6 gap-y-2">
-                <span className="font-mono text-xs text-ink-muted dark:text-[#928b7d] flex items-center">
-                  {c.prefix}
-                  <span
-                    className={`inline-block align-middle h-[0.9em] ${c.redact} ml-0.5 rounded-[1px] bg-[#17150f] dark:bg-[#5a5242]`}
-                    aria-label="redacted"
-                  />
-                </span>
-                <span className="font-mono text-[11px] text-ink-muted dark:text-[#928b7d] whitespace-nowrap">
+                <ScrambleRedactor prefix={c.prefix} defaultWidth={c.redact} />
+                <span className="font-mono text-[11px] text-ink-muted dark:text-[#928b7d] whitespace-nowrap select-none">
                   age {c.age} · scope:{" "}
                   <span className="text-[#ef4444] font-semibold">everything</span> ·
                   rotated: <span className="text-[#ef4444] font-semibold">never</span>

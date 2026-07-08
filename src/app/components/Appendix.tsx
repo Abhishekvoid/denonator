@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 interface Faq {
   q: string;
   a: string;
@@ -27,8 +32,10 @@ const FAQS: Faq[] = [
 ];
 
 export default function Appendix() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <div className="w-full max-w-2xl mx-auto pt-14 mt-14 border-t border-dashed border-ink-border dark:border-[#38332b] text-left">
+    <div className="w-full max-w-3xl text-left">
       <div className="flex items-center justify-between mb-6 font-mono text-[10px] uppercase tracking-wider text-ink-muted dark:text-[#928b7d] select-none">
         <span className="font-bold text-[#17150f] dark:text-[#ece7dd]">
           Appendix · Frequently asked
@@ -37,29 +44,52 @@ export default function Appendix() {
       </div>
 
       <div className="border-t border-ink-border dark:border-[#38332b]">
-        {FAQS.map((f, i) => (
-          <details
-            key={f.q}
-            className="group border-b border-dashed border-ink-border/60 dark:border-[#38332b]/60"
-          >
-            <summary className="flex items-start justify-between gap-4 py-4 cursor-pointer list-none select-none">
-              <span className="flex items-start gap-2.5">
-                <span className="font-mono text-[10px] text-ink-muted/60 dark:text-[#928b7d]/60 pt-1 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
+        {FAQS.map((f, i) => {
+          const isOpen = openIndex === i;
+          return (
+            <div
+              key={f.q}
+              className="border-b border-dashed border-ink-border/60 dark:border-[#38332b]/60"
+            >
+              <button
+                onClick={() => setOpenIndex(isOpen ? null : i)}
+                className="w-full flex items-start justify-between gap-4 py-4 text-left cursor-pointer select-none group font-inherit bg-transparent border-0 outline-none"
+              >
+                <span className="flex items-start gap-2.5">
+                  <span className="font-mono text-[10px] text-ink-muted/60 dark:text-[#928b7d]/60 pt-1 tabular-nums select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-sans text-sm md:text-base font-semibold text-[#17150f] dark:text-[#ece7dd] group-hover:text-[#c03a2b] dark:group-hover:text-amber transition-colors">
+                    {f.q}
+                  </span>
                 </span>
-                <span className="font-sans text-sm md:text-base font-semibold text-[#17150f] dark:text-[#ece7dd]">
-                  {f.q}
+                <span
+                  className={`text-[#c03a2b] dark:text-amber font-mono text-lg leading-none pt-0.5 transition-transform duration-300 shrink-0 select-none ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
+                >
+                  +
                 </span>
-              </span>
-              <span className="text-[#c03a2b] dark:text-amber font-mono text-lg leading-none pt-0.5 transition-transform duration-300 group-open:rotate-45 shrink-0">
-                +
-              </span>
-            </summary>
-            <p className="pb-4 pl-[2.1rem] pr-8 text-sm text-ink-muted dark:text-[#928b7d] leading-relaxed">
-              {f.a}
-            </p>
-          </details>
-        ))}
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="pb-4 pl-[2.1rem] pr-8 text-sm text-ink-muted dark:text-[#928b7d] leading-relaxed">
+                      {f.a}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -334,19 +334,19 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-paper dark:bg-[#1a1815] transition-colors duration-300">
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-ink transition-colors duration-300">
       {/* Digital Noise / Paper grain texture */}
       <div className="digital-noise" />
 
       {/* Header, Nav & SEC. 0 — Hero Section (Abstract) - 100% Viewport Width */}
       <div className="w-full relative z-10 transition-colors duration-300">
         {/* Document Header Metadata / RFC Border Top */}
-        <div className="border-b border-[#17150f] dark:border-[#38332b] bg-paper dark:bg-[#1a1815] transition-colors duration-300">
+        <div className="border-b border-ink-border bg-paper transition-colors duration-300">
           <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-stretch text-[10px] md:text-xs font-mono text-ink-muted dark:text-[#928b7d]">
-            <div className="px-6 py-3.5 border-b md:border-b-0 md:border-r border-ink-border dark:border-[#38332b] font-bold text-[#c03a2b] dark:text-amber tracking-wider select-none flex items-center">
+            <div className="px-6 py-3.5 border-b md:border-b-0 md:border-r border-ink-border font-bold text-[#c03a2b] dark:text-amber tracking-wider select-none flex items-center">
               BRK / SPEC-001
             </div>
-            <div className="px-6 py-3.5 border-b md:border-b-0 md:border-r border-ink-border dark:border-[#38332b] flex-1 text-center md:text-left tracking-widest uppercase select-none flex items-center justify-center md:justify-start">
+            <div className="px-6 py-3.5 border-b md:border-b-0 md:border-r border-ink-border flex-1 text-center md:text-left tracking-widest uppercase select-none flex items-center justify-center md:justify-start">
               RUNTIME TRUST SPECIFICATION FOR MACHINE ECONOMY
             </div>
             <div className="px-6 py-3.5 text-right tracking-wider select-none flex items-center justify-end">
@@ -356,7 +356,7 @@ export default function Home() {
         </div>
 
         {/* Navigation Bar */}
-        <div className="px-6 py-5 border-b border-dashed border-ink-border dark:border-[#38332b] bg-[#faf9f5] dark:bg-[#211e1a] transition-colors duration-300">
+        <div className="px-6 py-5 border-b border-dashed border-ink-border bg-panel transition-colors duration-300">
           <div className="w-full max-w-6xl mx-auto flex justify-between items-center">
             <div className="flex items-center gap-2 select-none">
               <Fingerprint className="w-5 h-5 text-[#c03a2b] dark:text-amber" />
@@ -393,7 +393,7 @@ export default function Home() {
               {/* Technical Sun/Moon Theme Switcher */}
               <button
                 onClick={toggleTheme}
-                className="px-3 py-2 border border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] hover:bg-[#17150f]/5 dark:hover:bg-[#ece7dd]/5 text-[#17150f] dark:text-[#ece7dd] transition-all cursor-pointer font-mono text-[10px] flex items-center gap-1.5 active:translate-y-px rounded-sm select-none"
+                className="px-3 py-2 border border-ink-border bg-paper hover:bg-ink/5 text-ink transition-all cursor-pointer font-mono text-[10px] flex items-center gap-1.5 active:translate-y-px rounded-sm select-none"
                 title="Switch visual profile"
               >
                 {theme === "light" ? (
@@ -411,7 +411,7 @@ export default function Home() {
 
               <button
                 onClick={(e) => scrollToSection("#vision", e)}
-                className="bg-[#17150f] dark:bg-amber hover:bg-ink-light dark:hover:bg-[#ffa500] text-paper dark:text-[#1a1815] font-mono font-bold text-xs px-5 py-2.5 transition-all shadow-xs active:translate-y-px cursor-pointer"
+                className="bg-ink dark:bg-amber hover:bg-ink-light dark:hover:bg-[#ffa500] text-paper dark:text-ink-border-dark font-mono font-bold text-xs px-5 py-2.5 transition-all shadow-xs active:translate-y-px cursor-pointer"
               >
                 Join Early Access
               </button>
@@ -420,14 +420,14 @@ export default function Home() {
         </div>
 
         {/* SEC. 0 — Hero Section (Abstract) */}
-        <div className="px-4 py-8 sm:px-8 sm:py-12 lg:px-12 border-b border-dashed border-ink-border dark:border-[#38332b] bg-[#faf9f5] dark:bg-[#211e1a] relative overflow-hidden transition-colors duration-300 flex justify-center items-center">
+        <div className="px-4 py-8 sm:px-8 sm:py-12 lg:px-12 border-b border-dashed border-ink-border bg-panel relative overflow-hidden transition-colors duration-300 flex justify-center items-center">
           {/* Cursor-reactive grid (isolated leaf: motion values + spring, no page re-render) */}
           <InteractiveGrid />
 
           {/* Desktop IDE Simulator Shell — floats on the reactive grid */}
-          <div className="relative z-10 w-full max-w-6xl bg-[#faf9f5]/95 dark:bg-[#211e1a]/95 flex flex-col transition-all duration-300 rounded-xl overflow-hidden border border-ink-border dark:border-[#38332b] shadow-[0_24px_70px_-24px_rgba(23,21,15,0.28)] dark:shadow-[0_24px_70px_-24px_rgba(0,0,0,0.65)]">
+          <div className="relative z-10 w-full max-w-6xl bg-panel/95 flex flex-col transition-all duration-300 rounded-xl overflow-hidden border border-ink-border shadow-[0_24px_70px_-24px_rgba(23,21,15,0.28)] dark:shadow-[0_24px_70px_-24px_rgba(0,0,0,0.65)]">
             {/* IDE Header / Title Bar */}
-            <div className="h-9 bg-[#faf9f5] dark:bg-[#211e1a] border-b border-ink-border dark:border-[#38332b]/60 flex items-center justify-between px-4 font-mono text-[10px] select-none text-ink-muted dark:text-[#928b7d]">
+            <div className="h-9 bg-panel border-b border-ink-border/60 flex items-center justify-between px-4 font-mono text-[10px] select-none text-ink-muted">
               <div className="flex items-center gap-1.5 w-1/4">
                 <span className="w-2.5 h-2.5 rounded-full bg-crimson opacity-80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber opacity-80" />
@@ -459,14 +459,14 @@ export default function Home() {
               {/* Main Tabbed Editor Workspace */}
               <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Editor Tab Headers */}
-                <div className="h-8 bg-[#faf9f5]/45 dark:bg-[#211e1a]/45 border-b border-ink-border dark:border-[#38332b]/60 flex items-center font-mono text-[10px] select-none text-ink-muted dark:text-[#928b7d]">
-                  <div className="px-4 h-full flex items-center gap-2 border-r border-ink-border dark:border-[#38332b]/60 bg-[#faf9f5] dark:bg-[#211e1a] text-[#17150f] dark:text-[#ece7dd] border-t-2 border-t-[#c03a2b] dark:border-t-amber">
+                <div className="h-8 bg-panel/45 border-b border-ink-border/60 flex items-center font-mono text-[10px] select-none text-ink-muted">
+                  <div className="px-4 h-full flex items-center gap-2 border-r border-ink-border/60 bg-panel text-ink border-t-2 border-t-[#c03a2b] dark:border-t-amber">
                     <span>README.md</span>
                     <span className="opacity-60 hover:opacity-100 cursor-pointer">
                       ×
                     </span>
                   </div>
-                  <div className="px-4 h-full flex items-center gap-2 border-r border-ink-border dark:border-[#38332b]/60 hover:bg-[#faf9f5]/30 dark:hover:bg-[#211e1a]/30 cursor-pointer transition-colors">
+                  <div className="px-4 h-full flex items-center gap-2 border-r border-ink-border/60 hover:bg-panel/30 cursor-pointer transition-colors">
                     <span>terminal_session.sh</span>
                   </div>
                 </div>
@@ -557,7 +557,7 @@ export default function Home() {
 
                         <MagneticButton
                           onClick={() => setDemoOpen(true)}
-                          className="bg-paper dark:bg-[#1a1815] text-[#17150f] dark:text-[#ece7dd] font-sans font-bold text-xs px-5 py-3 border border-ink-border dark:border-[#38332b] hover:bg-[#17150f]/5 dark:hover:bg-[#ece7dd]/5 transition-all flex items-center gap-2 active:translate-y-px cursor-pointer group"
+                          className="bg-paper text-ink font-sans font-bold text-xs px-5 py-3 border border-ink-border hover:bg-ink/5 transition-all flex items-center gap-2 active:translate-y-px cursor-pointer group"
                         >
                           <motion.span
                             animate={{ scale: [1, 1.15, 1] }}
@@ -576,7 +576,7 @@ export default function Home() {
                   </div>
 
                   {/* Right Split Pane: Code Execution / Interactive Terminal */}
-                  <div className="md:col-span-6 p-8 md:p-12 border-t md:border-t-0 md:border-l border-ink-border dark:border-[#38332b]/60 bg-[#faf9f5]/30 dark:bg-[#211e1a]/30 flex flex-col justify-center relative overflow-hidden z-10">
+                  <div className="md:col-span-6 p-8 md:p-12 border-t md:border-t-0 md:border-l border-ink-border/60 bg-panel/30 flex flex-col justify-center relative overflow-hidden z-10">
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -598,7 +598,7 @@ export default function Home() {
             </div>
 
             {/* IDE Footer / Status Bar */}
-            <div className="h-6 bg-[#faf9f5] dark:bg-[#211e1a] border-t border-ink-border dark:border-[#38332b]/60 flex items-center justify-between px-3 font-mono text-[9.5px] text-ink-muted dark:text-[#928b7d] select-none relative z-10">
+            <div className="h-6 bg-panel border-t border-ink-border/60 flex items-center justify-between px-3 font-mono text-[9.5px] text-ink-muted select-none relative z-10">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1 text-emerald">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-ping inline-block" />
@@ -617,10 +617,10 @@ export default function Home() {
       </div>
 
       {/* Trust/Vision Band */}
-      <div className="border-b border-dashed border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] transition-colors duration-300">
-        <div className="w-full max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 select-none divide-y md:divide-y-0 md:divide-x divide-ink-border dark:divide-[#38332b]">
+      <div className="border-b border-dashed border-ink-border bg-paper transition-colors duration-300">
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 select-none divide-y md:divide-y-0 md:divide-x divide-ink-border">
           {/* Metric 1 */}
-          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper dark:bg-[#1a1815] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a] transition-all group relative overflow-hidden min-h-35 text-left">
+          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper hover:bg-panel transition-all group relative overflow-hidden min-h-35 text-left">
             <div className="flex justify-between w-full font-mono text-[9px] text-ink-muted dark:text-[#928b7d]">
               <span>[REF-01]</span>
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c03a2b] dark:text-amber font-bold">
@@ -641,7 +641,7 @@ export default function Home() {
           </div>
 
           {/* Metric 2 */}
-          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper dark:bg-[#1a1815] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a] transition-all group relative overflow-hidden min-h-35 text-left">
+          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper hover:bg-panel transition-all group relative overflow-hidden min-h-35 text-left">
             <div className="flex justify-between w-full font-mono text-[9px] text-ink-muted dark:text-[#928b7d]">
               <span>[REF-02]</span>
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c03a2b] dark:text-amber font-bold">
@@ -662,7 +662,7 @@ export default function Home() {
           </div>
 
           {/* Metric 3 */}
-          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper dark:bg-[#1a1815] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a] transition-all group relative overflow-hidden min-h-35 text-left">
+          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper hover:bg-panel transition-all group relative overflow-hidden min-h-35 text-left">
             <div className="flex justify-between w-full font-mono text-[9px] text-ink-muted dark:text-[#928b7d]">
               <span>[REF-03]</span>
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c03a2b] dark:text-amber font-bold">
@@ -683,7 +683,7 @@ export default function Home() {
           </div>
 
           {/* Metric 4 */}
-          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper dark:bg-[#1a1815] hover:bg-[#faf9f5] dark:hover:bg-[#211e1a] transition-all group relative overflow-hidden min-h-35 text-left">
+          <div className="py-8 px-6 flex flex-col justify-between items-start bg-paper hover:bg-panel transition-all group relative overflow-hidden min-h-35 text-left">
             <div className="flex justify-between w-full font-mono text-[9px] text-ink-muted dark:text-[#928b7d]">
               <span>[REF-04]</span>
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c03a2b] dark:text-amber font-bold">
@@ -707,14 +707,14 @@ export default function Home() {
 
       {/* Subsequent sections - enclosed in the 1360px boxed container */}
       <div className="max-w-340 mx-auto px-6 md:px-8 py-10 md:py-16 relative z-10">
-        <div className="border border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] shadow-xl transition-colors duration-300">
+        <div className="border border-ink-border bg-paper shadow-xl transition-colors duration-300">
           {/* SEC. 01 — THE PROBLEM */}
           <div
-            className="border-b border-dashed border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] transition-colors duration-300 relative overflow-hidden"
+            className="border-b border-dashed border-ink-border bg-paper transition-colors duration-300 relative overflow-hidden"
             id="how-it-works"
           >
             {/* IDE Panel Header */}
-            <div className="flex items-center justify-between px-6 py-2.5 bg-[#faf9f5]/80 dark:bg-[#211e1a]/80 border-b border-ink-border dark:border-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d] select-none uppercase tracking-wider relative z-20">
+            <div className="flex items-center justify-between px-6 py-2.5 bg-panel/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider relative z-20">
               <div className="flex items-center gap-1.5 font-bold">
                 <span className="text-[#3b82f6] font-extrabold">&gt;</span>
                 <span>STANDING_CREDENTIAL_INVENTORY</span>
@@ -730,9 +730,9 @@ export default function Home() {
         </div>
 
           {/* SEC. 02 — THE RUNTIME PULSE DIAGRAM */}
-          <div className="border-b border-dashed border-ink-border dark:border-[#38332b] bg-[#faf9f5] dark:bg-[#211e1a] transition-colors duration-300">
+          <div className="border-b border-dashed border-ink-border bg-panel transition-colors duration-300">
             {/* IDE Panel Header */}
-            <div className="flex items-center justify-between px-6 py-2.5 bg-paper dark:bg-[#1a1815]/80 border-b border-ink-border dark:border-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d] select-none uppercase tracking-wider">
+            <div className="flex items-center justify-between px-6 py-2.5 bg-paper/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider">
               <div className="flex items-center gap-1.5 font-bold">
                 <span className="text-[#3b82f6] font-extrabold">&gt;</span>
                 <span>RUNTIME_INTERCEPTION_FLOW</span>
@@ -751,11 +751,11 @@ export default function Home() {
 
           {/* SEC. 03 — CAPABILITIES GRID */}
           <div
-            className="border-b border-dashed border-ink-border dark:border-[#38332b] bg-paper dark:bg-[#1a1815] transition-colors duration-300"
+            className="border-b border-dashed border-ink-border bg-paper transition-colors duration-300"
             id="capabilities"
           >
             {/* IDE Panel Header */}
-            <div className="flex items-center justify-between px-6 py-2.5 bg-[#faf9f5]/80 dark:bg-[#211e1a]/80 border-b border-ink-border dark:border-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d] select-none uppercase tracking-wider">
+            <div className="flex items-center justify-between px-6 py-2.5 bg-panel/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider">
               <div className="flex items-center gap-1.5 font-bold">
                 <span className="text-[#3b82f6] font-extrabold">&gt;</span>
                 <span>EPHEMERAL_CAPABILITY_REGISTRY</span>
@@ -780,12 +780,12 @@ export default function Home() {
 
             {/* SEC. 06 — THE REGISTER + APPENDIX */}
             <div
-              className="bg-[#faf9f5] dark:bg-[#211e1a] transition-colors duration-300"
+              className="bg-panel transition-colors duration-300"
               ref={waitlistRef}
               id="vision"
             >
               {/* IDE Panel Header */}
-              <div className="flex items-center justify-between px-6 py-2.5 bg-paper dark:bg-[#1a1815]/80 border-b border-ink-border dark:border-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d] select-none uppercase tracking-wider">
+              <div className="flex items-center justify-between px-6 py-2.5 bg-paper/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider">
                 <div className="flex items-center gap-1.5 font-bold">
                   <span className="text-[#3b82f6] font-extrabold">&gt;</span>
                   <span>ACCESS_CONTROL_REGISTRY</span>
@@ -797,223 +797,229 @@ export default function Home() {
 
               <div className="p-6 md:p-12">
                 <div className="w-full max-w-6xl mx-auto">
-                  <div className="max-w-2xl mx-auto text-center space-y-8 py-8">
-                    <div className="space-y-4">
-                      <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-amber tracking-widest uppercase block">
-                        SEC. 6 — THE REGISTER
-                      </span>
-                      <h2 className="font-sans text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd]">
-                        Sign the register
-                      </h2>
-                      <p className="text-sm text-ink-muted dark:text-[#928b7d] max-w-lg mx-auto">
-                        GitHub is in build. Add your email to get the CLI wrap
-                        client and docs when Phase 1 ships. Tell us what you are
-                        building and we will shape the first integrations around
-                        it.
-                      </p>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start py-8">
+                    {/* Left Column: Waitlist Title & Form */}
+                    <div className="lg:col-span-5 space-y-8 text-left">
+                      <div className="space-y-4">
+                        <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-amber tracking-widest uppercase block">
+                          SEC. 6 — THE REGISTER
+                        </span>
+                        <h2 className="font-sans text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd]">
+                          Sign the register
+                        </h2>
+                        <p className="text-sm text-ink-muted dark:text-[#928b7d] leading-relaxed">
+                          GitHub is in build. Add your email to get the CLI wrap
+                          client and docs when Phase 1 ships. Tell us what you are
+                          building and we will shape the first integrations around
+                          it.
+                        </p>
+                      </div>
+
+                      <AnimatePresence mode="wait">
+                        {waitlistState !== "registered" ? (
+                          <motion.div
+                            key="form-terminal"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="w-full max-w-md rounded-lg border border-ink-border bg-panel shadow-[4px_4px_0px_#d4d0c5] dark:shadow-[4px_4px_0px_var(--color-ink-border)] overflow-hidden flex flex-col font-mono text-[11px] text-ink text-left"
+                          >
+                            {/* Terminal header */}
+                            <div className="h-8 bg-panel/50 border-b border-ink-border/60 flex items-center justify-between px-3 select-none text-ink-muted">
+                              <div className="flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full bg-crimson opacity-80" />
+                                <span className="w-2 h-2 rounded-full bg-amber opacity-80" />
+                                <span className="w-2 h-2 rounded-full bg-emerald opacity-80" />
+                              </div>
+                              <span className="text-[10px] opacity-75">
+                                sh — broker register
+                              </span>
+                              <div className="w-9" />
+                            </div>
+
+                            {/* Terminal body */}
+                            <form
+                              onSubmit={handleWaitlistSubmit}
+                              className="p-4 space-y-3.5"
+                            >
+                              <div className="space-y-1">
+                                <p className="text-ink-muted dark:text-[#928b7d] select-none">
+                                  # Execute wrapper to register interest
+                                </p>
+                                <p className="flex items-center gap-1.5">
+                                  <span className="text-[#c03a2b] dark:text-amber select-none">
+                                    $
+                                  </span>
+                                  <span className="font-bold">
+                                    broker waitlist --join
+                                  </span>
+                                </p>
+                              </div>
+
+                              <div className="space-y-1.5 pt-1">
+                                <label
+                                  htmlFor="terminal-email"
+                                  className="text-ink-muted dark:text-[#928b7d] select-none block"
+                                >
+                                  Enter developer email:
+                                </label>
+                                <div className="relative flex items-center bg-paper/40 border border-ink-border/60 rounded px-2.5 py-2">
+                                  <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold">
+                                    &gt;
+                                  </span>
+                                  <input
+                                    id="terminal-email"
+                                    type="email"
+                                    required
+                                    placeholder="developer@enterprise.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled={waitlistState === "submitting"}
+                                    className="flex-1 bg-transparent text-[#17150f] dark:text-[#ece7dd] placeholder-[#928b7d]/50 focus:outline-none font-mono text-[11px]"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="space-y-1.5 pt-1">
+                                <label
+                                  htmlFor="terminal-building"
+                                  className="text-ink-muted dark:text-[#928b7d] select-none block"
+                                >
+                                  What are you building?{" "}
+                                  <span className="opacity-60">(optional)</span>
+                                </label>
+                                <div className="relative flex items-start bg-paper/40 border border-ink-border/60 rounded px-2.5 py-2">
+                                  <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold pt-px">
+                                    &gt;
+                                  </span>
+                                  <textarea
+                                    id="terminal-building"
+                                    rows={2}
+                                    placeholder="an autonomous release agent, a data pipeline copilot..."
+                                    value={building}
+                                    onChange={(e) => setBuilding(e.target.value)}
+                                    disabled={waitlistState === "submitting"}
+                                    className="flex-1 bg-transparent text-[#17150f] dark:text-[#ece7dd] placeholder-[#928b7d]/50 focus:outline-none font-mono text-[11px] resize-none leading-relaxed"
+                                  />
+                                </div>
+                              </div>
+
+                              <button
+                                type="submit"
+                                disabled={waitlistState === "submitting"}
+                                className="w-full bg-ink dark:bg-amber hover:bg-ink-light dark:hover:bg-[#ffa500] text-paper dark:text-ink-border-dark font-sans font-bold text-xs py-2.5 transition-all select-none flex items-center justify-center gap-2 border border-ink dark:border-amber active:translate-y-[0.5px] cursor-pointer disabled:opacity-50"
+                              >
+                                {waitlistState === "submitting" ? (
+                                  <>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-paper animate-ping" />
+                                    <span>RECORDING...</span>
+                                  </>
+                                ) : (
+                                  <span>EXECUTE REGISTRATION</span>
+                                )}
+                              </button>
+                            </form>
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="success-terminal"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="w-full max-w-md rounded-lg border border-emerald/30 bg-panel shadow-[4px_4px_0px_#10b981]/30 overflow-hidden flex flex-col font-mono text-[11px] text-ink text-left"
+                          >
+                            {/* Terminal header */}
+                            <div className="h-8 bg-emerald/5 border-b border-emerald/20 flex items-center justify-between px-3 select-none text-emerald">
+                              <div className="flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full bg-emerald" />
+                                <span className="w-2 h-2 rounded-full bg-emerald/60" />
+                                <span className="w-2 h-2 rounded-full bg-emerald/40" />
+                              </div>
+                              <span className="text-[10px] font-bold">
+                                SUCCESS — ticket_signature.bin
+                              </span>
+                              <div className="w-9" />
+                            </div>
+
+                            {/* Success output body */}
+                            <div className="p-4 space-y-3 relative">
+                              {/* Fingerprint decorative watermark in background */}
+                              <div className="absolute right-4 bottom-4 opacity-5 text-emerald pointer-events-none">
+                                <Fingerprint className="w-16 h-16" />
+                              </div>
+
+                              {/* ISSUED stamp */}
+                              <div className="absolute top-2.5 right-3 rotate-[9deg] border-2 border-emerald text-emerald font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded opacity-80 select-none pointer-events-none">
+                                Issued
+                              </div>
+
+                              <div className="space-y-1.5 pb-1 border-b border-dashed border-emerald/20">
+                                <p className="text-emerald font-bold">
+                                  ✓ REGISTER SIGNED — RECORDED
+                                </p>
+                                <p className="text-ink-muted dark:text-[#928b7d]">
+                                  Entry appended to the register. Signed with broker
+                                  authority public key.
+                                </p>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-y-1 text-[10px]">
+                                <span className="text-ink-muted dark:text-[#928b7d]">
+                                  REGISTER_REF:
+                                </span>
+                                <span className="col-span-2 font-bold text-[#c03a2b] dark:text-amber">
+                                  {ticketNumber}
+                                </span>
+
+                                <span className="text-ink-muted dark:text-[#928b7d]">
+                                  STATUS:
+                                </span>
+                                <span className="col-span-2 text-emerald font-bold">
+                                  RECORDED
+                                </span>
+
+                                <span className="text-ink-muted dark:text-[#928b7d]">
+                                  SCOPE:
+                                </span>
+                                <span className="col-span-2">
+                                  registry:early_access_beta
+                                </span>
+
+                                {building.trim() && (
+                                  <>
+                                    <span className="text-ink-muted dark:text-[#928b7d]">
+                                      NOTED:
+                                    </span>
+                                    <span className="col-span-2 text-[#17150f] dark:text-[#ece7dd]">
+                                      {building}
+                                    </span>
+                                  </>
+                                )}
+                              </div>
+
+                              <p className="text-[10px] text-ink-muted dark:text-[#928b7d] leading-relaxed pt-2 border-t border-dashed border-emerald/20">
+                                Welcome to the machine trust model. Instructions
+                                for downloading the broker CLI wrap client will be
+                                delivered to{" "}
+                                <span className="underline">{email}</span>.
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
-                    <AnimatePresence mode="wait">
-                      {waitlistState !== "registered" ? (
-                        <motion.div
-                          key="form-terminal"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          className="w-full max-w-md mx-auto rounded-lg border border-ink-border dark:border-[#38332b]/60 bg-[#faf9f5] dark:bg-[#211e1a] shadow-[4px_4px_0px_#d4d0c5] dark:shadow-[4px_4px_0px_#38332b] overflow-hidden flex flex-col font-mono text-[11px] text-[#17150f] dark:text-[#ece7dd] text-left"
-                        >
-                          {/* Terminal header */}
-                          <div className="h-8 bg-[#faf9f5]/50 dark:bg-[#211e1a]/50 border-b border-ink-border dark:border-[#38332b]/60 flex items-center justify-between px-3 select-none text-ink-muted dark:text-[#928b7d]">
-                            <div className="flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full bg-crimson opacity-80" />
-                              <span className="w-2 h-2 rounded-full bg-amber opacity-80" />
-                              <span className="w-2 h-2 rounded-full bg-emerald opacity-80" />
-                            </div>
-                            <span className="text-[10px] opacity-75">
-                              sh — broker register
-                            </span>
-                            <div className="w-9" />
-                          </div>
-
-                          {/* Terminal body */}
-                          <form
-                            onSubmit={handleWaitlistSubmit}
-                            className="p-4 space-y-3.5"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-ink-muted dark:text-[#928b7d] select-none">
-                                # Execute wrapper to register interest
-                              </p>
-                              <p className="flex items-center gap-1.5">
-                                <span className="text-[#c03a2b] dark:text-amber select-none">
-                                  $
-                                </span>
-                                <span className="font-bold">
-                                  broker waitlist --join
-                                </span>
-                              </p>
-                            </div>
-
-                            <div className="space-y-1.5 pt-1">
-                              <label
-                                htmlFor="terminal-email"
-                                className="text-ink-muted dark:text-[#928b7d] select-none block"
-                              >
-                                Enter developer email:
-                              </label>
-                              <div className="relative flex items-center bg-paper/40 dark:bg-[#1a1815]/40 border border-ink-border dark:border-[#38332b]/60 rounded px-2.5 py-2">
-                                <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold">
-                                  &gt;
-                                </span>
-                                <input
-                                  id="terminal-email"
-                                  type="email"
-                                  required
-                                  placeholder="developer@enterprise.com"
-                                  value={email}
-                                  onChange={(e) => setEmail(e.target.value)}
-                                  disabled={waitlistState === "submitting"}
-                                  className="flex-1 bg-transparent text-[#17150f] dark:text-[#ece7dd] placeholder-[#928b7d]/50 focus:outline-none font-mono text-[11px]"
-                                />
-                              </div>
-                            </div>
-
-                            <div className="space-y-1.5 pt-1">
-                              <label
-                                htmlFor="terminal-building"
-                                className="text-ink-muted dark:text-[#928b7d] select-none block"
-                              >
-                                What are you building?{" "}
-                                <span className="opacity-60">(optional)</span>
-                              </label>
-                              <div className="relative flex items-start bg-paper/40 dark:bg-[#1a1815]/40 border border-ink-border dark:border-[#38332b]/60 rounded px-2.5 py-2">
-                                <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold pt-px">
-                                  &gt;
-                                </span>
-                                <textarea
-                                  id="terminal-building"
-                                  rows={2}
-                                  placeholder="an autonomous release agent, a data pipeline copilot..."
-                                  value={building}
-                                  onChange={(e) => setBuilding(e.target.value)}
-                                  disabled={waitlistState === "submitting"}
-                                  className="flex-1 bg-transparent text-[#17150f] dark:text-[#ece7dd] placeholder-[#928b7d]/50 focus:outline-none font-mono text-[11px] resize-none leading-relaxed"
-                                />
-                              </div>
-                            </div>
-
-                            <button
-                              type="submit"
-                              disabled={waitlistState === "submitting"}
-                              className="w-full bg-[#17150f] dark:bg-amber hover:bg-ink-light dark:hover:bg-[#ffa500] text-paper dark:text-[#1a1815] font-sans font-bold text-xs py-2.5 transition-all select-none flex items-center justify-center gap-2 border border-[#17150f] dark:border-amber active:translate-y-[0.5px] cursor-pointer disabled:opacity-50"
-                            >
-                              {waitlistState === "submitting" ? (
-                                <>
-                                  <span className="w-1.5 h-1.5 rounded-full bg-paper dark:bg-[#1a1815] animate-ping" />
-                                  <span>RECORDING...</span>
-                                </>
-                              ) : (
-                                <span>EXECUTE REGISTRATION</span>
-                              )}
-                            </button>
-                          </form>
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="success-terminal"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          className="w-full max-w-md mx-auto rounded-lg border border-emerald/30 dark:border-emerald/40 bg-[#faf9f5] dark:bg-[#211e1a] shadow-[4px_4px_0px_#10b981]/30 overflow-hidden flex flex-col font-mono text-[11px] text-[#17150f] dark:text-[#ece7dd] text-left"
-                        >
-                          {/* Terminal header */}
-                          <div className="h-8 bg-emerald/5 border-b border-emerald/20 flex items-center justify-between px-3 select-none text-emerald">
-                            <div className="flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full bg-emerald" />
-                              <span className="w-2 h-2 rounded-full bg-emerald/60" />
-                              <span className="w-2 h-2 rounded-full bg-emerald/40" />
-                            </div>
-                            <span className="text-[10px] font-bold">
-                              SUCCESS — ticket_signature.bin
-                            </span>
-                            <div className="w-9" />
-                          </div>
-
-                          {/* Success output body */}
-                          <div className="p-4 space-y-3 relative">
-                            {/* Fingerprint decorative watermark in background */}
-                            <div className="absolute right-4 bottom-4 opacity-5 text-emerald pointer-events-none">
-                              <Fingerprint className="w-16 h-16" />
-                            </div>
-
-                            {/* ISSUED stamp */}
-                            <div className="absolute top-2.5 right-3 rotate-[9deg] border-2 border-emerald text-emerald font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded opacity-80 select-none pointer-events-none">
-                              Issued
-                            </div>
-
-                            <div className="space-y-1.5 pb-1 border-b border-dashed border-emerald/20">
-                              <p className="text-emerald font-bold">
-                                ✓ REGISTER SIGNED — RECORDED
-                              </p>
-                              <p className="text-ink-muted dark:text-[#928b7d]">
-                                Entry appended to the register. Signed with broker
-                                authority public key.
-                              </p>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-y-1 text-[10px]">
-                              <span className="text-ink-muted dark:text-[#928b7d]">
-                                REGISTER_REF:
-                              </span>
-                              <span className="col-span-2 font-bold text-[#c03a2b] dark:text-amber">
-                                {ticketNumber}
-                              </span>
-
-                              <span className="text-ink-muted dark:text-[#928b7d]">
-                                STATUS:
-                              </span>
-                              <span className="col-span-2 text-emerald font-bold">
-                                RECORDED
-                              </span>
-
-                              <span className="text-ink-muted dark:text-[#928b7d]">
-                                SCOPE:
-                              </span>
-                              <span className="col-span-2">
-                                registry:early_access_beta
-                              </span>
-
-                              {building.trim() && (
-                                <>
-                                  <span className="text-ink-muted dark:text-[#928b7d]">
-                                    NOTED:
-                                  </span>
-                                  <span className="col-span-2 text-[#17150f] dark:text-[#ece7dd]">
-                                    {building}
-                                  </span>
-                                </>
-                              )}
-                            </div>
-
-                            <p className="text-[10px] text-ink-muted dark:text-[#928b7d] leading-relaxed pt-2 border-t border-dashed border-emerald/20">
-                              Welcome to the machine trust model. Instructions
-                              for downloading the broker CLI wrap client will be
-                              delivered to{" "}
-                              <span className="underline">{email}</span>.
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {/* Right Column: FAQ Accordion */}
+                    <div className="lg:col-span-7">
+                      <Appendix />
+                    </div>
                   </div>
-
-                  <Appendix />
                 </div>
               </div>
             </div>
 
             {/* Colophon */}
-            <div className="border-t border-dashed border-ink-border dark:border-[#38332b]/60 bg-[#faf9f5] dark:bg-[#211e1a] select-none transition-colors duration-300">
-              <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ink-border dark:divide-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d]">
+            <div className="border-t border-dashed border-ink-border/60 bg-panel select-none transition-colors duration-300">
+              <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ink-border/60 text-[10px] font-mono text-ink-muted">
                 <div className="px-6 py-6 space-y-2">
                   <p className="text-[#17150f] dark:text-[#ece7dd] font-bold tracking-wider">
                     BROKER SPECIFICATIONS INDEX
@@ -1060,21 +1066,21 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-[#211e1a]/85 backdrop-blur-xs z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-ink-border-dark/85 backdrop-blur-xs z-50 flex items-center justify-center p-4"
             >
               <motion.div
                 initial={{ scale: 0.95, y: 15 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 15 }}
-                className="bg-paper dark:bg-[#1a1815] border border-[#17150f] dark:border-[#38332b] p-6 max-w-2xl w-full rounded-lg shadow-2xl space-y-4 relative"
+                className="bg-paper border border-ink p-6 max-w-2xl w-full rounded-lg shadow-2xl space-y-4 relative"
               >
-                <div className="flex justify-between items-center border-b border-ink-border dark:border-[#38332b] pb-3">
+                <div className="flex justify-between items-center border-b border-ink-border pb-3">
                   <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-amber uppercase">
                     SEC. 0.1 — 90-SECOND DEMO CAPTURE
                   </span>
                   <button
                     onClick={() => setDemoOpen(false)}
-                    className="font-mono text-xs bg-[#17150f] dark:bg-amber text-paper dark:text-[#1a1815] px-3 py-1.5 hover:bg-[#c03a2b] dark:hover:bg-[#ffa500] border border-[#17150f] dark:border-amber font-bold cursor-pointer"
+                    className="font-mono text-xs bg-ink dark:bg-amber text-paper dark:text-ink-border-dark px-3 py-1.5 hover:bg-[#c03a2b] dark:hover:bg-[#ffa500] border border-ink dark:border-amber font-bold cursor-pointer"
                   >
                     [ CLOSE ]
                   </button>
