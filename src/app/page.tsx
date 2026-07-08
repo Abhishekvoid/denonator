@@ -198,13 +198,10 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Apply the user's preferred color scheme on mount. The `dark` class on <html>
-    // is the source of truth; useTheme() observes it, so this only touches the DOM
-    // (an external system) and never calls setState.
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    if (systemPrefersDark) {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
       document.documentElement.classList.add("dark");
     }
 
@@ -246,6 +243,7 @@ export default function Home() {
     );
 
     const targetTheme = theme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", targetTheme);
     const doc = document as DocumentWithViewTransition;
 
     // Toggling the class updates the theme via the useTheme() store observer.

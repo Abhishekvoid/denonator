@@ -32,9 +32,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${ibmPlexMono.variable} ${inter.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${ibmPlexMono.variable} ${inter.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full bg-[#f6f5f0] text-[#17150f] selection:bg-[#17150f]/10">
+      <body className="min-h-full bg-background text-foreground selection:bg-ink/10">
         {children}
       </body>
     </html>

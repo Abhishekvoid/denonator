@@ -4,22 +4,22 @@
 
 
 :root {
-  --background: #f6f5f0;
+  --background: #ebe7dd;
   --foreground: #17150f;
-  --stroke-wire: #d4d0c5;
+  --stroke-wire: #d4ccb9;
 
-  --color-paper: #f6f5f0;
-  --color-panel: #faf9f5;
+  --color-paper: #ebe7dd;
+  --color-panel: #e2ddcf;
   --color-ink: #17150f;
   --color-ink-light: #2c2923;
   --color-ink-muted: #5c574a;
-  --color-ink-border: #d4d0c5;
+  --color-ink-border: #d4ccb9;
   --color-ink-border-dark: #17150f;
 
   /* Scrollbars */
-  --scrollbar-track: #f1ecd9;
-  --scrollbar-thumb: #c2ba9e;
-  --scrollbar-thumb-hover: #a39c82;
+  --scrollbar-track: #e2ddcf;
+  --scrollbar-thumb: #b8af96;
+  --scrollbar-thumb-hover: #9e947b;
 }
 
 html.dark {
