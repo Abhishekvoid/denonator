@@ -1,26 +1,153 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f5f0;
+  --foreground: #17150f;
+  --stroke-wire: #d4d0c5;
+}
+
+html.dark {
+  --background: #08090c;
+  --foreground: #e6e8eb;
+  --stroke-wire: #1b1e25;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-mono: var(--font-mono), monospace;
+  
+  --color-paper: #f6f5f0;
+  --color-ink: #17150f;
+  --color-ink-light: #2c2923;
+  --color-ink-muted: #5c574a;
+  --color-ink-border: #d4d0c5;
+  --color-ink-border-dark: #17150f;
+  --color-crimson: #ef4444;
+  --color-crimson-hover: #dc2626;
+  
+  --color-amber: #ffb000;
+  --color-emerald: #10b981;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+/* Paper Grain / Digital Noise Texture Overlay */
+.digital-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Void Stamp Style */
+.void-stamp {
+  font-family: var(--font-mono);
+  color: #ef4444;
+  border: 2px solid #ef4444;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(-8deg);
+  display: inline-block;
+  opacity: 0.85;
+}
+
+/* Custom styled scrollbars matching paper colors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ecd9;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2ba9e;
+  border-radius: 2px;
+  border: 1px solid #d4d0c5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a39c82;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background-color: #ffb000;
+  vertical-align: -2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* Lenis Smooth Scroll CSS Rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis-stopped {
+  overflow: hidden;
+}
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* View Transitions API overrides for circular reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Crawling dashed wires animation */
+@keyframes flow-wire {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.animate-flow-wire {
+  animation: flow-wire 1s linear infinite;
+}
+
+/* Laser scanning sweep animation */
+@keyframes laser-sweep {
+  0%, 100% {
+    top: 2%;
+    opacity: 0.15;
+  }
+  50% {
+    top: 98%;
+    opacity: 0.65;
+  }
+}
+
+.animate-laser-sweep {
+  animation: laser-sweep 2.8s ease-in-out infinite;
+}
+
+
+

@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tooling / agent config
+.claude/
+.agents/
+skills-lock.json
+
+# scratch & debug artifacts
+check_dims.mjs
+debug_layout.mjs
+debug_layout2.mjs
+debug_mobile.mjs
+verify_flow.mjs
+temp_diff.txt
