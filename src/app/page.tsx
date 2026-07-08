@@ -15,6 +15,9 @@ import ExhibitATerminal from "./components/ExhibitATerminal";
 import RuntimePulse from "./components/RuntimePulse";
 import EphemeralLifecycle from "./components/EphemeralLifecycle";
 import StandingSecretInventory from "./components/StandingSecretInventory";
+import ScopeOfWork from "./components/ScopeOfWork";
+import Position from "./components/Position";
+import Appendix from "./components/Appendix";
 import InteractiveGrid from "./components/InteractiveGrid";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -183,6 +186,7 @@ function DecryptPill({
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [building, setBuilding] = useState("");
   const [waitlistState, setWaitlistState] = useState<
     "idle" | "submitting" | "registered"
   >("idle");
@@ -716,7 +720,7 @@ export default function Home() {
                 <span>STANDING_CREDENTIAL_INVENTORY</span>
               </div>
               <div className="font-semibold">
-                [<span className="text-[#3b82f6] font-bold">1</span>/4]
+                [<span className="text-[#3b82f6] font-bold">1</span>/6]
               </div>
             </div>
 
@@ -734,7 +738,7 @@ export default function Home() {
                 <span>RUNTIME_INTERCEPTION_FLOW</span>
               </div>
               <div className="font-semibold">
-                [<span className="text-[#3b82f6] font-bold">2</span>/4]
+                [<span className="text-[#3b82f6] font-bold">2</span>/6]
               </div>
             </div>
 
@@ -757,7 +761,7 @@ export default function Home() {
                 <span>EPHEMERAL_CAPABILITY_REGISTRY</span>
               </div>
               <div className="font-semibold">
-                [<span className="text-[#3b82f6] font-bold">3</span>/4]
+                [<span className="text-[#3b82f6] font-bold">3</span>/6]
               </div>
             </div>
 
@@ -768,7 +772,13 @@ export default function Home() {
             </div>
           </div>
 
-            {/* SEC. 04 — REGISTRY WAITLIST */}
+            {/* SEC. 04 — SCOPE OF WORK */}
+            <ScopeOfWork />
+
+            {/* SEC. 05 — POSITION */}
+            <Position />
+
+            {/* SEC. 06 — THE REGISTER + APPENDIX */}
             <div
               className="bg-[#faf9f5] dark:bg-[#211e1a] transition-colors duration-300"
               ref={waitlistRef}
@@ -781,7 +791,7 @@ export default function Home() {
                   <span>ACCESS_CONTROL_REGISTRY</span>
                 </div>
                 <div className="font-semibold">
-                  [<span className="text-[#3b82f6] font-bold">4</span>/4]
+                  [<span className="text-[#3b82f6] font-bold">6</span>/6]
                 </div>
               </div>
 
@@ -790,15 +800,16 @@ export default function Home() {
                   <div className="max-w-2xl mx-auto text-center space-y-8 py-8">
                     <div className="space-y-4">
                       <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-amber tracking-widest uppercase block">
-                        SEC. 4 — JOIN EARLY ACCESS
+                        SEC. 6 — THE REGISTER
                       </span>
                       <h2 className="font-sans text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd]">
-                        Make autonomous software trustworthy by default
+                        Sign the register
                       </h2>
                       <p className="text-sm text-ink-muted dark:text-[#928b7d] max-w-lg mx-auto">
-                        Validate demand for the Phase 1 release: Delete your
-                        GITHUB_PAT. We&apos;ll send you early access documentation
-                        and CLI download instructions as soon as they are ready.
+                        GitHub is in build. Add your email to get the CLI wrap
+                        client and docs when Phase 1 ships. Tell us what you are
+                        building and we will shape the first integrations around
+                        it.
                       </p>
                     </div>
 
@@ -867,6 +878,30 @@ export default function Home() {
                               </div>
                             </div>
 
+                            <div className="space-y-1.5 pt-1">
+                              <label
+                                htmlFor="terminal-building"
+                                className="text-ink-muted dark:text-[#928b7d] select-none block"
+                              >
+                                What are you building?{" "}
+                                <span className="opacity-60">(optional)</span>
+                              </label>
+                              <div className="relative flex items-start bg-paper/40 dark:bg-[#1a1815]/40 border border-ink-border dark:border-[#38332b]/60 rounded px-2.5 py-2">
+                                <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold pt-px">
+                                  &gt;
+                                </span>
+                                <textarea
+                                  id="terminal-building"
+                                  rows={2}
+                                  placeholder="an autonomous release agent, a data pipeline copilot..."
+                                  value={building}
+                                  onChange={(e) => setBuilding(e.target.value)}
+                                  disabled={waitlistState === "submitting"}
+                                  className="flex-1 bg-transparent text-[#17150f] dark:text-[#ece7dd] placeholder-[#928b7d]/50 focus:outline-none font-mono text-[11px] resize-none leading-relaxed"
+                                />
+                              </div>
+                            </div>
+
                             <button
                               type="submit"
                               disabled={waitlistState === "submitting"}
@@ -910,18 +945,24 @@ export default function Home() {
                               <Fingerprint className="w-16 h-16" />
                             </div>
 
+                            {/* ISSUED stamp */}
+                            <div className="absolute top-2.5 right-3 rotate-[9deg] border-2 border-emerald text-emerald font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded opacity-80 select-none pointer-events-none">
+                              Issued
+                            </div>
+
                             <div className="space-y-1.5 pb-1 border-b border-dashed border-emerald/20">
                               <p className="text-emerald font-bold">
-                                ✓ CRYPTOGRAPHIC REGISTRY COMPLETE
+                                ✓ REGISTER SIGNED — RECORDED
                               </p>
                               <p className="text-ink-muted dark:text-[#928b7d]">
-                                Payload signed with broker authority public key.
+                                Entry appended to the register. Signed with broker
+                                authority public key.
                               </p>
                             </div>
 
                             <div className="grid grid-cols-3 gap-y-1 text-[10px]">
                               <span className="text-ink-muted dark:text-[#928b7d]">
-                                TICKET_REF:
+                                REGISTER_REF:
                               </span>
                               <span className="col-span-2 font-bold text-[#c03a2b] dark:text-amber">
                                 {ticketNumber}
@@ -931,7 +972,7 @@ export default function Home() {
                                 STATUS:
                               </span>
                               <span className="col-span-2 text-emerald font-bold">
-                                ACTIVE
+                                RECORDED
                               </span>
 
                               <span className="text-ink-muted dark:text-[#928b7d]">
@@ -940,6 +981,17 @@ export default function Home() {
                               <span className="col-span-2">
                                 registry:early_access_beta
                               </span>
+
+                              {building.trim() && (
+                                <>
+                                  <span className="text-ink-muted dark:text-[#928b7d]">
+                                    NOTED:
+                                  </span>
+                                  <span className="col-span-2 text-[#17150f] dark:text-[#ece7dd]">
+                                    {building}
+                                  </span>
+                                </>
+                              )}
                             </div>
 
                             <p className="text-[10px] text-ink-muted dark:text-[#928b7d] leading-relaxed pt-2 border-t border-dashed border-emerald/20">
@@ -953,13 +1005,15 @@ export default function Home() {
                       )}
                     </AnimatePresence>
                   </div>
+
+                  <Appendix />
                 </div>
               </div>
             </div>
 
-            {/* RFC Registry Index Footer */}
+            {/* Colophon */}
             <div className="border-t border-dashed border-ink-border dark:border-[#38332b]/60 bg-[#faf9f5] dark:bg-[#211e1a] select-none transition-colors duration-300">
-              <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-ink-border dark:divide-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d]">
+              <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ink-border dark:divide-[#38332b]/60 text-[10px] font-mono text-ink-muted dark:text-[#928b7d]">
                 <div className="px-6 py-6 space-y-2">
                   <p className="text-[#17150f] dark:text-[#ece7dd] font-bold tracking-wider">
                     BROKER SPECIFICATIONS INDEX
@@ -972,6 +1026,17 @@ export default function Home() {
                     <p>
                       RFC-003: Cryptographic Capability delegation (PLANNING)
                     </p>
+                  </div>
+                </div>
+                <div className="px-6 py-6 space-y-2">
+                  <p className="text-[#17150f] dark:text-[#ece7dd] font-bold tracking-wider">
+                    COLOPHON
+                  </p>
+                  <div className="space-y-1 opacity-80">
+                    <p>Set in Inter, Newsreader &amp; IBM Plex Mono.</p>
+                    <p>Built with Next.js and Motion.</p>
+                    <p>Published as a living specification.</p>
+                    <p>Last revised JUL 2026 · draft v0.1.2</p>
                   </div>
                 </div>
                 <div className="px-6 py-6 flex flex-col justify-between space-y-4 md:space-y-0 text-left">
