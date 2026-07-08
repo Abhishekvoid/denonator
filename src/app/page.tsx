@@ -13,7 +13,7 @@ import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RuntimeLoop from "./components/RuntimeLoop";
-import RuntimePulse from "./components/RuntimePulse";
+import InterceptionFlow from "./components/InterceptionFlow";
 import EphemeralLifecycle from "./components/EphemeralLifecycle";
 import StandingSecretInventory from "./components/StandingSecretInventory";
 import ScopeOfWork from "./components/ScopeOfWork";
@@ -764,7 +764,7 @@ export default function Home() {
 
             <div className="px-6 py-6 md:py-12">
               <div className="w-full max-w-310 mx-auto">
-                <RuntimePulse />
+                <InterceptionFlow />
               </div>
             </div>
           </div>
