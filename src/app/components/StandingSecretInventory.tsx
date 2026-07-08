@@ -1,86 +1,76 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-interface Finding {
-  name: string;
-  prefix: string; // visible prefix before the redaction bar
-  redact: string; // tailwind width of the redaction bar
-  age: string;
-}
+/**
+ * SEC.1 — The standing secret. The emotional inverse of the hero: the hero's
+ * capability is born, lives, expires, and leaves a record. Here nothing expires.
+ *
+ * Observation over explanation. The register is static; only *time* moves:
+ *   1. each credential's age ticks up (they are still alive),
+ *   2. a system clock ticks,
+ *   3. occasionally a new agent boots and inherits all of them, then leaves —
+ *      the credentials remain.
+ * No scramble gimmick, no entrance animations. Reduced motion freezes all three.
+ */
 
-// The structure of the problem is the argument. No invented stats — just the
-// four credentials almost every codebase actually ships, each a standing audit
-// finding: permanent, over-scoped, never rotated.
-const CREDENTIALS: Finding[] = [
-  { name: "GITHUB_PAT", prefix: "ghp_", redact: "w-28 sm:w-36", age: "14 months" },
-  { name: "AWS_ACCESS_KEY", prefix: "AKIA", redact: "w-24 sm:w-32", age: "8 months" },
-  { name: "DB_PASSWORD", prefix: "", redact: "w-32 sm:w-44", age: "22 months" },
-  { name: "SLACK_BOT_TOKEN", prefix: "xoxb-", redact: "w-28 sm:w-40", age: "5 months" },
+const CREDENTIALS: { name: string; base: number }[] = [
+  { name: "GITHUB_PAT", base: 421 },
+  { name: "AWS_ACCESS_KEY", base: 286 },
+  { name: "DB_PASSWORD", base: 812 },
+  { name: "SLACK_BOT_TOKEN", base: 197 },
 ];
 
-function ScrambleRedactor({ prefix, defaultWidth }: { prefix: string; defaultWidth: string }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [scrambledText, setScrambledText] = useState("");
-
-  useEffect(() => {
-    if (!isHovered) {
-      setScrambledText("");
-      return;
-    }
-
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-    const dummyLength = 16;
-    let iterations = 0;
-
-    const interval = setInterval(() => {
-      let result = "";
-      for (let i = 0; i < dummyLength; i++) {
-        if (i < iterations) {
-          result += "x89jKdf81s9d8s1j"[i] || "x";
-        } else {
-          result += chars[Math.floor(Math.random() * chars.length)];
-        }
-      }
-      setScrambledText(result);
-      iterations += 0.5;
-
-      if (iterations >= dummyLength) {
-        clearInterval(interval);
-      }
-    }, 45);
-
-    return () => clearInterval(interval);
-  }, [isHovered]);
-
-  return (
-    <span
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="inline-flex items-center cursor-help group/scramble py-0.5 select-none font-mono text-xs text-ink-muted dark:text-[#928b7d]"
-    >
-      {prefix}
-      {isHovered ? (
-        <span className="ml-1 text-[#ef4444] font-mono text-[11px] tracking-wider select-all font-semibold">
-          {scrambledText || "scanning..."}
-        </span>
-      ) : (
-        <span
-          className={`inline-block align-middle h-[0.9em] ${defaultWidth} ml-0.5 rounded-[1px] bg-[#17150f] dark:bg-[#5a5242] transition-all duration-300 group-hover/scramble:opacity-40`}
-          aria-label="redacted"
-        />
-      )}
-    </span>
-  );
-}
+const COLS =
+  "sm:grid-cols-[1.7fr_0.9fr_1fr_1.15fr_0.85fr_0.85fr]";
 
 export default function StandingSecretInventory() {
   const reduce = useReducedMotion();
+  const [ages, setAges] = useState<number[]>(CREDENTIALS.map((c) => c.base));
+  const [clock, setClock] = useState("");
+  const [agent, setAgent] = useState<number | null>(null);
+
+  // Age ticks up — they are still alive.
+  useEffect(() => {
+    if (reduce) return;
+    const id = setInterval(() => setAges((a) => a.map((n) => n + 1)), 2400);
+    return () => clearInterval(id);
+  }, [reduce]);
+
+  // System clock.
+  useEffect(() => {
+    if (reduce) return;
+    const update = () =>
+      setClock(new Date().toLocaleTimeString("en-GB", { hour12: false }));
+    const kick = setTimeout(update, 0);
+    const id = setInterval(update, 1000);
+    return () => {
+      clearTimeout(kick);
+      clearInterval(id);
+    };
+  }, [reduce]);
+
+  // A new agent boots, inherits everything, then leaves. The credentials remain.
+  useEffect(() => {
+    if (reduce) return;
+    let hide: ReturnType<typeof setTimeout>;
+    const show = () => {
+      setAgent(20 + Math.floor(Math.random() * 79));
+      hide = setTimeout(() => setAgent(null), 3200);
+    };
+    const first = setTimeout(show, 4000);
+    const id = setInterval(show, 9000);
+    return () => {
+      clearTimeout(first);
+      clearTimeout(hide);
+      clearInterval(id);
+    };
+  }, [reduce]);
 
   return (
     <div className="w-full max-w-310 mx-auto space-y-10">
-      {/* Section copy */}
+      {/* Copy */}
       <div className="max-w-2xl space-y-4">
         <span className="inline-block rounded-full px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] font-bold font-mono bg-[#c03a2b]/10 dark:bg-amber/10 text-[#c03a2b] dark:text-amber border border-[#c03a2b]/20 dark:border-amber/20 select-none">
           SEC. 1 — THE STANDING SECRET
@@ -90,57 +80,124 @@ export default function StandingSecretInventory() {
         </h2>
         <p className="text-sm md:text-base text-ink-muted dark:text-[#928b7d] leading-relaxed">
           Every credential your agents can reach is permanent, over-scoped, and
-          never rotated. It sits in plaintext across .env files, CI variables,
-          and container images.
+          inherited by every new worker. Most never expire.
         </p>
       </div>
 
-      {/* The inventory: a paper audit document */}
+      {/* The register */}
       <div className="rounded-xl border border-ink-border bg-panel overflow-hidden shadow-[4px_4px_0px_#d4d0c5] dark:shadow-[4px_4px_0px_var(--color-ink-border)] transition-colors duration-300">
+        {/* Register header */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-ink-border bg-paper font-mono text-[10px] uppercase tracking-wider select-none">
           <span className="font-bold text-[#17150f] dark:text-[#ece7dd]">
             Inventory of standing credentials
           </span>
-          <span className="flex items-center gap-1.5 text-[#ef4444] font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse" />
-            Status: Unresolved
+          <span className="flex items-center gap-4 text-ink-muted dark:text-[#928b7d]">
+            <span className="tabular-nums hidden sm:inline">
+              sys {clock || "--:--:--"}
+            </span>
+            <span className="flex items-center gap-1.5 text-[#ef4444] font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse" />
+              Unresolved
+            </span>
           </span>
         </div>
 
+        {/* Column labels (desktop) */}
+        <div
+          className={`hidden sm:grid ${COLS} gap-x-4 px-5 py-2 border-b border-dashed border-ink-border dark:border-[#38332b] font-mono text-[9px] uppercase tracking-wider text-ink-muted/70 dark:text-[#928b7d]/70 select-none`}
+        >
+          <span>Credential</span>
+          <span>Status</span>
+          <span>Scope</span>
+          <span>Age</span>
+          <span>Expires</span>
+          <span>Rotation</span>
+        </div>
+
+        {/* Rows — static; only the age moves */}
         <div className="px-5">
           {CREDENTIALS.map((c, i) => (
-            <motion.div
+            <div
               key={c.name}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-x-5 gap-y-2 py-4 border-b border-dashed border-ink-border/60 dark:border-[#38332b]/60 last:border-b-0"
+              className={`grid grid-cols-1 ${COLS} gap-x-4 gap-y-1.5 py-4 border-b border-dashed border-ink-border/60 dark:border-[#38332b]/60 last:border-b-0 font-mono text-[11px]`}
             >
+              {/* Credential */}
               <div className="flex items-center gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] shrink-0" />
-                <span className="font-mono text-xs font-bold text-[#17150f] dark:text-[#ece7dd]">
+                <span className="font-bold text-[13px] text-[#17150f] dark:text-[#ece7dd]">
                   {c.name}
                 </span>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-6 gap-y-2">
-                <ScrambleRedactor prefix={c.prefix} defaultWidth={c.redact} />
-                <span className="font-mono text-[11px] text-ink-muted dark:text-[#928b7d] whitespace-nowrap select-none">
-                  age {c.age} · scope:{" "}
-                  <span className="text-[#ef4444] font-semibold">everything</span> ·
-                  rotated: <span className="text-[#ef4444] font-semibold">never</span>
+
+              <Field label="Status">
+                <span className="text-[#17150f] dark:text-[#ece7dd]">ACTIVE</span>
+              </Field>
+              <Field label="Scope">
+                <span className="text-[#ef4444] font-semibold">everything</span>
+              </Field>
+              <Field label="Age">
+                <span className="text-[#17150f] dark:text-[#ece7dd] tabular-nums">
+                  {ages[i].toLocaleString()} days
                 </span>
-              </div>
-            </motion.div>
+                <span className="text-[#ef4444] ml-1" aria-hidden="true">
+                  &#8593;
+                </span>
+              </Field>
+              <Field label="Expires">
+                <span className="text-[#ef4444] font-semibold">Never</span>
+              </Field>
+              <Field label="Rotation">
+                <span className="text-[#ef4444] font-semibold">Never</span>
+              </Field>
+            </div>
           ))}
+        </div>
+
+        {/* A new worker inherits everything, then leaves */}
+        <div className="px-5 py-2.5 border-t border-ink-border bg-paper min-h-[2.4rem] flex items-center font-mono text-[10px]">
+          <AnimatePresence mode="wait">
+            {agent !== null ? (
+              <motion.span
+                key={agent}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="text-ink-muted dark:text-[#928b7d]"
+              >
+                <span className="text-[#ef4444]">&#8627;</span> agent-
+                {String(agent).padStart(2, "0")} booted &middot; inherited{" "}
+                <span className="text-[#17150f] dark:text-[#ece7dd]">
+                  all 4 standing credentials
+                </span>
+              </motion.span>
+            ) : (
+              <span className="text-ink-muted/50 dark:text-[#928b7d]/50 select-none">
+                awaiting next agent&hellip;
+              </span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Closing line — the structure is damning enough */}
-      <p className="font-sans text-xl md:text-2xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd] leading-snug max-w-2xl">
-        Every agent that boots inherits{" "}
-        <span className="text-[#c03a2b] dark:text-amber">all of them</span>.
+      {/* Closing — large, quiet, no animation */}
+      <p className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd] leading-snug text-center max-w-2xl mx-auto pt-2">
+        Nothing expires.{" "}
+        <span className="text-[#c03a2b] dark:text-amber">
+          Every new agent inherits all of it.
+        </span>
       </p>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <span className="sm:hidden text-[9px] uppercase tracking-wider text-ink-muted/60 dark:text-[#928b7d]/60 w-16 shrink-0">
+        {label}
+      </span>
+      <span className="flex items-center">{children}</span>
     </div>
   );
 }
