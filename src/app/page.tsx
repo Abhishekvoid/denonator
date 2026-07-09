@@ -16,7 +16,7 @@ import RuntimeLoop from "./components/RuntimeLoop";
 import InterceptionFlow from "./components/InterceptionFlow";
 import EphemeralLifecycle from "./components/EphemeralLifecycle";
 import StandingSecretInventory from "./components/StandingSecretInventory";
-import ScopeOfWork from "./components/ScopeOfWork";
+import ProtocolSurface from "./components/ProtocolSurface";
 import Position from "./components/Position";
 import Appendix from "./components/Appendix";
 import InteractiveGrid from "./components/InteractiveGrid";
@@ -792,8 +792,8 @@ export default function Home() {
             </div>
           </div>
 
-            {/* SEC. 04 — SCOPE OF WORK */}
-            <ScopeOfWork />
+            {/* SEC. 04 — PROTOCOL SURFACE */}
+            <ProtocolSurface />
 
             {/* SEC. 05 — POSITION */}
             <Position />
@@ -808,7 +808,7 @@ export default function Home() {
               <div className="flex items-center justify-between px-6 py-2.5 bg-paper/80 border-b border-ink-border/60 text-[10px] font-mono text-ink-muted select-none uppercase tracking-wider">
                 <div className="flex items-center gap-1.5 font-bold">
                   <span className="text-[#3b82f6] font-extrabold">&gt;</span>
-                  <span>ACCESS_CONTROL_REGISTRY</span>
+                  <span>REFERENCE_IMPLEMENTATION</span>
                 </div>
                 <div className="font-semibold">
                   [<span className="text-[#3b82f6] font-bold">6</span>/6]
@@ -822,16 +822,13 @@ export default function Home() {
                     <div className="lg:col-span-5 space-y-8 text-left">
                       <div className="space-y-4">
                         <span className="font-mono text-xs font-bold text-[#c03a2b] dark:text-amber tracking-widest uppercase block">
-                          SEC. 6 — THE REGISTER
+                          SEC. 6 — REFERENCE IMPLEMENTATION
                         </span>
-                        <h2 className="font-sans text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd]">
-                          Sign the register
+                        <h2 className="font-sans text-3xl font-bold tracking-tight text-[#17150f] dark:text-[#ece7dd] leading-[1.1]">
+                          {"The specification is drafted. The implementation isn't."}
                         </h2>
                         <p className="text-sm text-ink-muted dark:text-[#928b7d] leading-relaxed">
-                          GitHub is in build. Add your email to get the CLI wrap
-                          client and docs when Phase 1 ships. Tell us what you are
-                          building and we will shape the first integrations around
-                          it.
+                          {"If your infrastructure has autonomous software, you're already solving this problem. Help define the reference implementation."}
                         </p>
                       </div>
 
@@ -864,15 +861,13 @@ export default function Home() {
                             >
                               <div className="space-y-1">
                                 <p className="text-ink-muted dark:text-[#928b7d] select-none">
-                                  # Execute wrapper to register interest
+                                  # Register implementation interest
                                 </p>
                                 <p className="flex items-center gap-1.5">
                                   <span className="text-[#c03a2b] dark:text-amber select-none">
                                     $
                                   </span>
-                                  <span className="font-bold">
-                                    broker waitlist --join
-                                  </span>
+                                  <span className="font-bold">broker register</span>
                                 </p>
                               </div>
 
@@ -881,7 +876,7 @@ export default function Home() {
                                   htmlFor="terminal-email"
                                   className="text-ink-muted dark:text-[#928b7d] select-none block"
                                 >
-                                  Enter developer email:
+                                  identity:
                                 </label>
                                 <div className="relative flex items-center bg-paper/40 border border-ink-border/60 rounded px-2.5 py-2">
                                   <span className="text-ink-muted dark:text-[#928b7d] mr-2 select-none font-bold">
@@ -905,7 +900,7 @@ export default function Home() {
                                   htmlFor="terminal-building"
                                   className="text-ink-muted dark:text-[#928b7d] select-none block"
                                 >
-                                  What are you building?{" "}
+                                  workload:{" "}
                                   <span className="opacity-60">(optional)</span>
                                 </label>
                                 <div className="relative flex items-start bg-paper/40 border border-ink-border/60 rounded px-2.5 py-2">
@@ -932,10 +927,10 @@ export default function Home() {
                                 {waitlistState === "submitting" ? (
                                   <>
                                     <span className="w-1.5 h-1.5 rounded-full bg-paper animate-ping" />
-                                    <span>RECORDING...</span>
+                                    <span>REGISTERING...</span>
                                   </>
                                 ) : (
-                                  <span>EXECUTE REGISTRATION</span>
+                                  <span>Register interest</span>
                                 )}
                               </button>
                             </form>
@@ -974,17 +969,17 @@ export default function Home() {
 
                               <div className="space-y-1.5 pb-1 border-b border-dashed border-emerald/20">
                                 <p className="text-emerald font-bold">
-                                  ✓ REGISTER SIGNED — RECORDED
+                                  ✓ ADDED TO PROTOCOL REGISTRY
                                 </p>
                                 <p className="text-ink-muted dark:text-[#928b7d]">
-                                  Entry appended to the register. Signed with broker
-                                  authority public key.
+                                  Entry appended to the protocol registry. Signed
+                                  with broker authority public key.
                                 </p>
                               </div>
 
                               <div className="grid grid-cols-3 gap-y-1 text-[10px]">
                                 <span className="text-ink-muted dark:text-[#928b7d]">
-                                  REGISTER_REF:
+                                  REGISTRY_REF:
                                 </span>
                                 <span className="col-span-2 font-bold text-[#c03a2b] dark:text-amber">
                                   {ticketNumber}
@@ -994,14 +989,14 @@ export default function Home() {
                                   STATUS:
                                 </span>
                                 <span className="col-span-2 text-emerald font-bold">
-                                  RECORDED
+                                  ADMITTED
                                 </span>
 
                                 <span className="text-ink-muted dark:text-[#928b7d]">
                                   SCOPE:
                                 </span>
                                 <span className="col-span-2">
-                                  registry:early_access_beta
+                                  registry:reference_implementation
                                 </span>
 
                                 {building.trim() && (
@@ -1017,9 +1012,8 @@ export default function Home() {
                               </div>
 
                               <p className="text-[10px] text-ink-muted dark:text-[#928b7d] leading-relaxed pt-2 border-t border-dashed border-emerald/20">
-                                Welcome to the machine trust model. Instructions
-                                for downloading the broker CLI wrap client will be
-                                delivered to{" "}
+                                Reference implementation updates and the CLI
+                                wrapper will be delivered to{" "}
                                 <span className="underline">{email}</span>.
                               </p>
                             </div>
@@ -1044,14 +1038,45 @@ export default function Home() {
                   <p className="text-[#17150f] dark:text-[#ece7dd] font-bold tracking-wider">
                     BROKER SPECIFICATIONS INDEX
                   </p>
-                  <div className="space-y-1 opacity-80">
-                    <p>RFC-001: Scoped capabilities model (DRAFT)</p>
-                    <p>
-                      RFC-002: Active runtime interception layers (PLANNING)
-                    </p>
-                    <p>
-                      RFC-003: Cryptographic Capability delegation (PLANNING)
-                    </p>
+                  <div className="space-y-1.5">
+                    {[
+                      { id: "RFC-001", title: "Capability Model", status: "DRAFT" },
+                      {
+                        id: "RFC-002",
+                        title: "Runtime Interception",
+                        status: "REFERENCE",
+                      },
+                      {
+                        id: "RFC-003",
+                        title: "Capability Delegation",
+                        status: "PLANNING",
+                      },
+                      { id: "RFC-004", title: "Protocol Surface", status: "DRAFT" },
+                      { id: "RFC-005", title: "Trust Primitive", status: "DRAFT" },
+                    ].map((rfc) => (
+                      <div
+                        key={rfc.id}
+                        className="flex items-center justify-between gap-3"
+                      >
+                        <span className="opacity-80">
+                          <span className="font-bold text-[#17150f] dark:text-[#ece7dd]">
+                            {rfc.id}
+                          </span>{" "}
+                          {rfc.title}
+                        </span>
+                        <span
+                          className={`shrink-0 px-1.5 py-0.5 rounded-sm border text-[9px] font-bold tracking-wider select-none ${
+                            rfc.status === "REFERENCE"
+                              ? "text-emerald border-emerald/40 bg-emerald/10"
+                              : rfc.status === "DRAFT"
+                                ? "text-[#c03a2b] dark:text-amber border-[#c03a2b]/30 dark:border-amber/30 bg-[#c03a2b]/10 dark:bg-amber/10"
+                                : "text-ink-muted dark:text-[#928b7d] border-ink-border bg-panel"
+                          }`}
+                        >
+                          {rfc.status}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="px-6 py-6 space-y-2">
@@ -1066,9 +1091,16 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="px-6 py-6 flex flex-col justify-between space-y-4 md:space-y-0 text-left">
-                  <div className="flex items-center gap-1.5 text-[#c03a2b] dark:text-amber font-bold">
-                    <Fingerprint className="w-3.5 h-3.5" />
-                    <span>Broker: Runtime Trust layer for AI agents</span>
+                  <div className="flex items-start gap-1.5 text-[#c03a2b] dark:text-amber font-bold">
+                    <Fingerprint className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                    <span className="flex flex-col leading-tight">
+                      <span className="font-sans text-sm tracking-tight">
+                        Broker
+                      </span>
+                      <span className="font-mono text-[9px] font-normal text-ink-muted dark:text-[#928b7d]">
+                        The runtime trust layer for autonomous software.
+                      </span>
+                    </span>
                   </div>
                   <p className="text-[9px] text-ink-muted/85 dark:text-[#928b7d]/85 leading-normal">
                     © 2026 Broker Inc. Specification Adaptive Workspace. All

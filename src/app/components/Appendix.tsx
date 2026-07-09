@@ -10,24 +10,36 @@ interface Faq {
 
 const FAQS: Faq[] = [
   {
-    q: "How is Broker different from Vault?",
-    a: "Vault stores long-lived secrets and hands them to services you configure ahead of time. Broker issues short-lived capabilities to agents at runtime and expires them automatically. There is no secret to store, rotate, or leak.",
+    q: "Why isn't Vault enough?",
+    a: "Vault brokers secrets; Broker brokers runtime capabilities. Vault can issue dynamic, short-lived credentials, but your application still decides when to request them, how to scope them, and how to use them safely. Broker sits in the execution path, issuing task-scoped capabilities with expiry and one audit trail across everything an agent touches. The two compose.",
   },
   {
-    q: "Why not just use fine-grained GitHub tokens or GitHub Apps?",
-    a: "Those solve GitHub. Broker applies the same runtime-trust model across every resource an agent touches, databases, clouds, and SaaS, behind one scope model and one audit trail.",
+    q: "Why not GitHub Apps?",
+    a: "GitHub Apps solve identity for GitHub. Autonomous agents also touch databases, cloud APIs, SaaS platforms, and internal services. Broker applies one runtime trust model across every resource instead of a different identity system for each provider.",
   },
   {
-    q: "What happens if Broker is down?",
-    a: "Agents fail closed. No capability is minted, so nothing runs with standing access. Your resources are never left holding a permanent key that depends on our uptime.",
+    q: "Why not fine-grained PATs?",
+    a: "Fine-grained PATs narrow what a token can do, but they are still standing credentials: minted once, valid for weeks, sitting in an environment variable until someone rotates them. Broker's capabilities are minted per task and expire automatically after the task completes or its lifetime ends.",
+  },
+  {
+    q: "Why not OIDC?",
+    a: "OIDC and workload identity federation establish the identity of a trusted workload. Broker builds on that identity to delegate narrowly scoped, short-lived capabilities to autonomous execution. When an agent coordinates work across providers, services, or delegated tasks, Broker carries scope, expiry, and audit with every capability. Where OIDC is available, Broker complements it rather than replacing it.",
+  },
+  {
+    q: "What happens if Broker fails?",
+    a: "Capability requests fail closed. If Broker cannot mint a capability, the operation does not execute. Resources are never left protected by standing credentials that depend on Broker remaining available.",
   },
   {
     q: "Can I self-host it?",
-    a: "Self-hosting is on the roadmap. The broker authority is designed to run inside your own trust boundary, not as a mandatory third party in the request path.",
+    a: "Self-hosting is planned. The authority that issues capabilities is designed so it can operate inside your own trust boundary rather than requiring a permanently hosted third-party control plane.",
   },
   {
     q: "When can I use it?",
-    a: "GitHub is in build now. Sign the register above to get the CLI wrap client and documentation the moment Phase 1 ships.",
+    a: "GitHub is the reference implementation in progress today. Register above to receive the CLI wrapper and documentation as soon as Phase 1 is available.",
+  },
+  {
+    q: "Isn't this just a secrets manager for agents?",
+    a: "No. Identity providers prove who a human is. Secret managers protect long-lived credentials. Broker governs what autonomous software is allowed to do while it runs, issuing short-lived, task-scoped capabilities in the execution path. Storing a secret and governing runtime authority are different problems, and the second one needs its own primitive.",
   },
 ];
 
