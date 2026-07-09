@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import CapabilityCard from "./CapabilityCard";
 
 /**
  * Hero "runtime capture" — a self-executing protocol loop the visitor watches:
@@ -231,65 +232,15 @@ export default function RuntimeLoop() {
                 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className={`rounded-lg border p-3 bg-[#141a24] transition-colors duration-300 ${
-                  expiring ? "border-[#ef4444]/60" : "border-[#212836]"
-                }`}
               >
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="text-[#8a99ad] uppercase tracking-wider">Capability</span>
-                  <span className="px-1.5 py-0.5 border border-[#212836] bg-[#0d1013] text-[#8a99ad] uppercase">
-                    repo:read
-                  </span>
-                </div>
-
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full ${
-                        expiring ? "bg-[#ef4444] animate-ping" : "bg-[#10b981]"
-                      }`}
-                    />
-                    <span className={`font-bold ${expiring ? "text-[#ef4444]" : "text-[#f1f5f9]"}`}>
-                      {expiring ? "EXPIRING" : "GRANTED"}
-                    </span>
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[#8a99ad]">
-                    TTL
-                    <span
-                      className={`font-bold tabular-nums px-1.5 py-0.5 rounded ${
-                        expiring ? "bg-[#ef4444] text-white" : "bg-[#ffb000] text-[#0d1013]"
-                      }`}
-                    >
-                      {mmss}
-                    </span>
-                  </span>
-                </div>
-
-                <div className="mt-2 h-4 text-[#8a99ad]">
-                  {show200 && (
-                    <span>
-                      GET /pulls <span className="text-[#10b981] font-bold">&rarr; 200 OK</span>
-                    </span>
-                  )}
-                </div>
-
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-[9px] uppercase tracking-wider text-[#8a99ad]/70">Decay</span>
-                  <div className="flex-1 grid grid-cols-12 gap-[3px]">
-                    {Array.from({ length: SEGMENTS }).map((_, i) => (
-                      <span
-                        key={i}
-                        className={`h-1.5 rounded-[1px] transition-colors duration-300 ${
-                          i < filled
-                            ? expiring
-                              ? "bg-[#ef4444]"
-                              : "bg-[#10b981]"
-                            : "bg-[#212836]"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
+                <CapabilityCard
+                  tone="terminal"
+                  status={expiring ? "expiring" : "granted"}
+                  ttl={mmss}
+                  filled={filled}
+                  segments={SEGMENTS}
+                  showRequest={show200}
+                />
               </motion.div>
             )}
           </AnimatePresence>
